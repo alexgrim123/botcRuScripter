@@ -56,6 +56,8 @@ invert_other_night = 0; // 0 - not inverted, 1 - invert for print
 fable_offset = -500;
 arrow_button_cd = 0;
 background_enable = 1;
+pic_mode = 1; // 0 - old pics, 1 - new pics
+pic_scale = 1.8;
 //first_night_last = 56;
 //other_night_last = 72;
 
@@ -356,7 +358,7 @@ amy_order[charName.baron] = amyOrder.passive
 charCode[charName.butler] = "butler"
 charIcon[charName.butler] = SprButler
 charTitle[charName.butler] = "Дворецкий"
-charDesc[charName.butler] = "Каждую ночь выбираете игрока (не себя). Следующим днём можете голосовать только если выбранный игрок голосует. Способность работает даже если вы пьяны или отравлены."
+charDesc[charName.butler] = "Каждую ночь вы выбираете игрока (не себя). Следующим днём можете голосовать только если выбранный игрок голосует."
 charSet[charName.butler] = setName.troubleBrewing;
 group[charName.butler] = charGroup.outsider;
 f_night[charName.butler] = 38;
@@ -366,7 +368,7 @@ amy_order[charName.butler] = amyOrder.everyNight
 charCode[charName.chef] = "chef"
 charIcon[charName.chef] = SprChef
 charTitle[charName.chef] = "Шеф"
-charDesc[charName.chef] = "В начале вы знаете, сколько пар Злодеев в игре. (пара Злодеев - это два Злодея, которые сидят рядом)"
+charDesc[charName.chef] = "В начале вы знаете, сколько пар Злодеев в игре."
 charSet[charName.chef] = setName.troubleBrewing;
 group[charName.chef] = charGroup.townsfolk;
 f_night[charName.chef] = 35;
@@ -476,7 +478,7 @@ amy_order[charName.ravenkeeper] = amyOrder.triggerOncePerGame
 charCode[charName.recluse] = "recluse"
 charIcon[charName.recluse] = SprRecluse
 charTitle[charName.recluse] = "Отшельник"
-charDesc[charName.recluse] = "Когда что-то зависит от вашего персонажа или стороны, вас можно посчитать Злодеем, Приспешником или Демоном, даже если вы мертвы."
+charDesc[charName.recluse] = "Вас можно посчитать Злодеем, Приспешником или Демоном, даже если вы мертвы."
 charSet[charName.recluse] = setName.troubleBrewing;
 group[charName.recluse] = charGroup.outsider;
 f_night[charName.recluse] = 0;
@@ -486,7 +488,7 @@ amy_order[charName.recluse] = amyOrder.passive
 charCode[charName.saint] = "saint"
 charIcon[charName.saint] = SprSaint
 charTitle[charName.saint] = "Святой"
-charDesc[charName.saint] = "Если вас казнят, вы и ваша команда проигрываете."
+charDesc[charName.saint] = "Если вас казнят, ваша команда проигрывает."
 charSet[charName.saint] = setName.troubleBrewing;
 group[charName.saint] = charGroup.outsider;
 f_night[charName.saint] = 0;
@@ -526,7 +528,7 @@ amy_order[charName.soldier] = amyOrder.passive
 charCode[charName.spy] = "spy"
 charIcon[charName.spy] = SprSpy
 charTitle[charName.spy] = "Шпион"
-charDesc[charName.spy] = "Когда что-то зависит от вашего персонажа или стороны, вас можно посчитать Добрым, Горожанином или Посторонним, даже если мертвы. Каждую ночь вы смотрите Гримуар."
+charDesc[charName.spy] = "Вас можно посчитать Добрым, Горожанином или Посторонним, даже если мертвы. Каждую ночь вы смотрите Гримуар."
 charSet[charName.spy] = setName.troubleBrewing;
 group[charName.spy] = charGroup.minion;
 f_night[charName.spy] = 50;
@@ -617,7 +619,7 @@ amy_order[charName.courtier] = amyOrder.oncePerGame
 
 charCode[charName.devilsadvocate] = "devils_advocate"
 charIcon[charName.devilsadvocate] = SprDevilsAdvocate
-charTitle[charName.devilsadvocate] = "Адвокат Дьявола"
+charTitle[charName.devilsadvocate] = "Адвокат дьявола"
 charDesc[charName.devilsadvocate] = "Каждую ночь вы выбираете живого игрока (не того же, что и в прошлую ночь). Если его казнят на следующий день, он не умирает."
 charSet[charName.devilsadvocate] = setName.badMoonRising;
 group[charName.devilsadvocate] = charGroup.minion;
@@ -628,7 +630,7 @@ amy_order[charName.devilsadvocate] = amyOrder.everyNight
 charCode[charName.exorcist] = "exorcist"
 charIcon[charName.exorcist] = SprExorcist
 charTitle[charName.exorcist] = "Экзорцист"
-charDesc[charName.exorcist] = "Каждую ночь* вы выбираете игрока (не того же, что и в прошлую ночь). Если выбран Демон, то он узнает, что вы Экзорцист, и не просыпается ночью."
+charDesc[charName.exorcist] = "Каждую ночь* вы выбираете игрока (не того же, что и в прошлую ночь). Если выбран Демон, то он узнаёт, что вы Экзорцист, и не просыпается ночью."
 charSet[charName.exorcist] = setName.badMoonRising;
 group[charName.exorcist] = charGroup.townsfolk;
 f_night[charName.exorcist] = 0;
@@ -657,7 +659,7 @@ amy_order[charName.gambler] = amyOrder.everyNightAsterisk
 
 charCode[charName.godfather] = "godfather"
 charIcon[charName.godfather] = SprGodfather
-charTitle[charName.godfather] = "Крёстный Отец"
+charTitle[charName.godfather] = "Крёстный отец"
 charDesc[charName.godfather] = "Вы знаете, какие Посторонние в игре. Каждую ночь, если днём Посторонний умер, выберите игрока, этот игрок умирает. [-1/+1 Посторонний]"
 charSet[charName.godfather] = setName.badMoonRising;
 group[charName.godfather] = charGroup.minion;
@@ -668,7 +670,7 @@ amy_order[charName.godfather] = amyOrder.everyNight
 charCode[charName.goon] = "goon"
 charIcon[charName.goon] = SprGoon
 charTitle[charName.goon] = "Наёмник"
-charDesc[charName.goon] = "Каждую ночь первый игрок, который выбирает вас целью своей способности, пьянеет до рассвета. Вы переходите на его сторону."
+charDesc[charName.goon] = "Каждую ночь первый игрок, который выбирает вас целью своей способности, пьянеет до заката. Вы переходите на его сторону."
 charSet[charName.goon] = setName.badMoonRising;
 group[charName.goon] = charGroup.outsider;
 f_night[charName.goon] = 0;
@@ -698,7 +700,7 @@ amy_order[charName.grandmother] = amyOrder.firstNight
 charCode[charName.innkeeper] = "innkeeper"
 charIcon[charName.innkeeper] = SprInnkeeper
 charTitle[charName.innkeeper] = "Трактирщик"
-charDesc[charName.innkeeper] = "Каждую ночь* вы выбираете 2 игроков. Они не могут умереть этой ночью, но 1 из них пьян до следующего заката."
+charDesc[charName.innkeeper] = "Каждую ночь* вы выбираете 2 игроков. Они не могут умереть этой ночью, но 1 из них пьян до заката."
 charSet[charName.innkeeper] = setName.badMoonRising;
 group[charName.innkeeper] = charGroup.townsfolk;
 f_night[charName.innkeeper] = 0;
@@ -708,7 +710,7 @@ amy_order[charName.innkeeper] = amyOrder.everyNightAsterisk
 charCode[charName.lunatic] = "lunatic"
 charIcon[charName.lunatic] = SprLunatic
 charTitle[charName.lunatic] = "Лунатик"
-charDesc[charName.lunatic] = "Вы думаете, что вы Демон, но это не так. Демон знает, что вы Лунатик, и знает, кого вы атакуете ночью."
+charDesc[charName.lunatic] = "Вы думаете, что вы Демон, но это не так. Демон знает, что вы Лунатик, и знает, кого вы выбираете ночью."
 charSet[charName.lunatic] = setName.badMoonRising;
 group[charName.lunatic] = charGroup.outsider;
 f_night[charName.lunatic] = 7;
@@ -718,7 +720,7 @@ amy_order[charName.lunatic] = amyOrder.passive
 charCode[charName.mastermind] = "mastermind"
 charIcon[charName.mastermind] = SprMastermind
 charTitle[charName.mastermind] = "Руководитель"
-charDesc[charName.mastermind] = "Если Демон умер из-за казни, игра продолжается ещё один день. Если за этот день казнят игрока, этот игрок и его команда проигрывают."
+charDesc[charName.mastermind] = "Если Демон умер из-за казни, игра продолжается ещё один день. Если за этот день кого-то казнят, его команда проигрывают."
 charSet[charName.mastermind] = setName.badMoonRising;
 group[charName.mastermind] = charGroup.minion;
 f_night[charName.mastermind] = 0;
@@ -728,7 +730,7 @@ amy_order[charName.mastermind] = amyOrder.triggerOncePerGame
 charCode[charName.minstrel] = "minstrel"
 charIcon[charName.minstrel] = SprMinstrel
 charTitle[charName.minstrel] = "Менестрель"
-charDesc[charName.minstrel] = "Если от казни умер Приспешник, все другие игроки (кроме Путников) пьяны всю ночь и следующий день до заката."
+charDesc[charName.minstrel] = "Если от казни умер Приспешник, все другие игроки (кроме Путников) пьяны до завтрашнего заката."
 charSet[charName.minstrel] = setName.badMoonRising;
 group[charName.minstrel] = charGroup.townsfolk;
 f_night[charName.minstrel] = 0;
@@ -758,7 +760,7 @@ amy_order[charName.pacifist] = amyOrder.passive
 charCode[charName.po] = "po"
 charIcon[charName.po] = SprPo
 charTitle[charName.po] = "По"
-charDesc[charName.po] = "Каждую ночь* вы выбираете игрока. Этот игрок умирает. Вы можете не выбирать никого. Если в последний раз вы никого не выбирали, можете выбрать 3 игроков."
+charDesc[charName.po] = "Каждую ночь* вы выбираете игрока. Этот игрок умирает. Если в последний раз вы никого не выбирали, выберите 3 игроков."
 charSet[charName.po] = setName.badMoonRising;
 group[charName.po] = charGroup.demon;
 f_night[charName.po] = 0;
@@ -798,7 +800,7 @@ amy_order[charName.sailor] = amyOrder.everyNight
 charCode[charName.shabaloth] = "shabaloth"
 charIcon[charName.shabaloth] = SprShabaloth
 charTitle[charName.shabaloth] = "Шабалот"
-charDesc[charName.shabaloth] = "Каждую ночь* вы выбираете 2 игроков. Они умирают. Мёртвый игрок, которого вы выбирали прошлой ночью может быть извергнут обратно."
+charDesc[charName.shabaloth] = "Каждую ночь* вы выбираете 2 игроков. Они умирают. Мёртвый игрок, которого вы выбирали прошлой ночью может быть извергнут."
 charSet[charName.shabaloth] = setName.badMoonRising;
 group[charName.shabaloth] = charGroup.demon;
 f_night[charName.shabaloth] = 0;
@@ -900,7 +902,7 @@ amy_order[charName.clockmaker] = amyOrder.firstNight;
 charCode[charName.dreamer] = "dreamer"
 charIcon[charName.dreamer] = SprDreamer
 charTitle[charName.dreamer] = "Мечтатель"
-charDesc[charName.dreamer] = "Каждую ночь вы выбираете игрока (не себя). Вы узнаёте 1 Доброго персонажа и 1 персонажа Злодея. Этот игрок является одним из них."
+charDesc[charName.dreamer] = "Каждую ночь вы выбираете игрока (не себя). Вы узнаёте 1 Доброго и 1 Злого персонажей. Этот игрок является одним из них."
 charSet[charName.dreamer] = setName.sectsAndViolets;
 group[charName.dreamer] = charGroup.townsfolk;
 f_night[charName.dreamer] = 41;
@@ -910,7 +912,7 @@ amy_order[charName.dreamer] = amyOrder.everyNight;
 charCode[charName.eviltwin] = "evil_twin"
 charIcon[charName.eviltwin] = SprEvilTwin
 charTitle[charName.eviltwin] = "Злой близнец"
-charDesc[charName.eviltwin] = "Вы и игрок другой стороны знаете друг друга, вы знаете его персонажа. Если Добрый Близнец казнён, Злодеи побеждают. Добрая сторона не может победить, пока оба Близнеца живы."
+charDesc[charName.eviltwin] = "Вы и игрок другой команды знаете друг друга. Если Доброго игрока из вас казнят, Зло побеждает. Пока оба живы, Добро не может победить."
 charSet[charName.eviltwin] = setName.sectsAndViolets;
 group[charName.eviltwin] = charGroup.minion;
 f_night[charName.eviltwin] = 22;
@@ -940,7 +942,7 @@ amy_order[charName.flowergirl] = amyOrder.everyNightAsterisk;
 charCode[charName.juggler] = "juggler"
 charIcon[charName.juggler] = SprJuggler
 charTitle[charName.juggler] = "Жонглёр"
-charDesc[charName.juggler] = "В первый свой день, публично угадайте до 5 персонажей у игроков. Ночью вы узнаете, сколько из догадок были правильными."
+charDesc[charName.juggler] = "В первый свой день, публично угадайте до 5 персонажей у игроков. Ночью вы узнаете, сколько угадали."
 charSet[charName.juggler] = setName.sectsAndViolets;
 group[charName.juggler] = charGroup.townsfolk;
 f_night[charName.juggler] = 0;
@@ -950,7 +952,7 @@ amy_order[charName.juggler] = amyOrder.dayOncePerGame;
 charCode[charName.klutz] = "klutz"
 charIcon[charName.klutz] = SprKlutz
 charTitle[charName.klutz] = "Недотёпа"
-charDesc[charName.klutz] = "Когда вы узнаёте, что вы умерли, публично выберите живого игрока. Если вы выбрали Злодея, вы и ваша команда проигрываете."
+charDesc[charName.klutz] = "Когда вы узнаёте, что вы умерли, публично выберите живого игрока. Если вы выбрали Злодея, ваша команда проигрывает."
 charSet[charName.klutz] = setName.sectsAndViolets;
 group[charName.klutz] = charGroup.outsider;
 f_night[charName.klutz] = 0;
@@ -1010,7 +1012,7 @@ amy_order[charName.philosopher] = amyOrder.oncePerGame;
 charCode[charName.pithag] = "pit-hag"
 charIcon[charName.pithag] = SprPitHag
 charTitle[charName.pithag] = "Колдунья"
-charDesc[charName.pithag] = "Каждую ночь* вы выбираете игрока и персонажа. Если такого персонажа нет в игре, выбранный игрок им становится. Если персонаж - Демон, все смерти этой ночи выбираются Рассказчиком."
+charDesc[charName.pithag] = "Каждую ночь* вы выбираете игрока и персонажа, в котрого он превращается (если такого персонажа нет в игре). Если сделан Демон, смерти этой ночью выбирает Рассказчик."
 charSet[charName.pithag] = setName.sectsAndViolets;
 group[charName.pithag] = charGroup.minion;
 f_night[charName.pithag] = 0;
@@ -1030,7 +1032,7 @@ amy_order[charName.sage] = amyOrder.triggerOncePerGame;
 charCode[charName.savant] = "savant"
 charIcon[charName.savant] = SprSavant
 charTitle[charName.savant] = "Учённый"
-charDesc[charName.savant] = "Каждый день, если вы посетите Рассказчика, вы узнаёте 2 факта. Один правдивый, другой ложный."
+charDesc[charName.savant] = "Каждый день вы можете посетить Рассказчика, чтобы узнать 2 факта. Один правдивый, другой ложный."
 charSet[charName.savant] = setName.sectsAndViolets;
 group[charName.savant] = charGroup.townsfolk;
 f_night[charName.savant] = 0;
@@ -1100,7 +1102,7 @@ amy_order[charName.vortox] = amyOrder.everyNightAsterisk;
 charCode[charName.witch] = "witch"
 charIcon[charName.witch] = SprWitch
 charTitle[charName.witch] = "Ведьма"
-charDesc[charName.witch] = "Каждую ночь вы выбираете игрока. Если он номинирует в следующий день, он умирает. Если в живых осталось только 3 игрока, вы теряете способность."
+charDesc[charName.witch] = "Каждую ночь вы выбираете игрока. Если он номинирует на следующий день, он умирает. Если в живых только 3 игрока, вы теряете эту способность."
 charSet[charName.witch] = setName.sectsAndViolets;
 group[charName.witch] = charGroup.minion;
 f_night[charName.witch] = 23;
@@ -1181,7 +1183,7 @@ amy_order[charName.atheist] = amyOrder.passive;
 charCode[charName.balloonist] = "balloonist"
 charIcon[charName.balloonist] = SprBalloonist
 charTitle[charName.balloonist] = "Аэронавт"
-charDesc[charName.balloonist] = "Каждую ночь вы узнаёте по 1 игроку каждой группы персонажей в игре, пока группы не закончатся. [+1 посторонний]"
+charDesc[charName.balloonist] = "Каждую ночь вы узнаёте по 1 игроку каждой группы персонажей в игре, пока они не закончатся. [+1 посторонний]"
 charSet[charName.balloonist] = setName.experimental;
 group[charName.balloonist] = charGroup.townsfolk;
 f_night[charName.balloonist] = 46;
@@ -1201,7 +1203,7 @@ amy_order[charName.boomdandy] = amyOrder.triggerOncePerGame;
 charCode[charName.bountyhunter] = "bounty_hunter"
 charIcon[charName.bountyhunter] = SprBountyHunter
 charTitle[charName.bountyhunter] = "Охотник за головами"
-charDesc[charName.bountyhunter] = "В начале вы знаете 1 Злого игрока. Если этот игрок умирает, вы узнаёте другого Злого игрока ночью. [1 горожанин злой]"
+charDesc[charName.bountyhunter] = "В начале вы знаете 1 игрока Злодея. Если этот игрок умирает, вы узнаёте другого игрока Злодея этой ночью. [1 Горожанин Злой]"
 charSet[charName.bountyhunter] = setName.experimental;
 group[charName.bountyhunter] = charGroup.townsfolk;
 f_night[charName.bountyhunter] = 47;
@@ -1231,7 +1233,7 @@ amy_order[charName.choirboy] = amyOrder.triggerOncePerGame
 charCode[charName.cultleader] = "cult_leader"
 charIcon[charName.cultleader] = SprCultLeader
 charTitle[charName.cultleader] = "Лидер культа"
-charDesc[charName.cultleader] = "Каждую ночь вы переходите на сторону одного из живых соседей. Если все добрые игроки выберут вступить в ваш культ, ваша команда побеждает."
+charDesc[charName.cultleader] = "Каждую ночь вы переходите на сторону одного из живых соседей. Если все Добрые игроки выберут вступить в ваш культ, ваша команда побеждает."
 charSet[charName.cultleader] = setName.experimental;
 group[charName.cultleader] = charGroup.townsfolk;
 f_night[charName.cultleader] = 49;
@@ -1251,7 +1253,7 @@ amy_order[charName.damsel] = amyOrder.passive
 charCode[charName.engineer] = "engineer"
 charIcon[charName.engineer] = SprEngineer
 charTitle[charName.engineer] = "Инженер"
-charDesc[charName.engineer] = "Раз в игру, ночью выберите какой демон или какие приспешники в игре."
+charDesc[charName.engineer] = "Раз в игру, ночью, выберите какой Демон или какие Приспешники в игре."
 charSet[charName.engineer] = setName.experimental;
 group[charName.engineer] = charGroup.townsfolk;
 f_night[charName.engineer] = 12;
@@ -1271,7 +1273,7 @@ amy_order[charName.farmer] = amyOrder.passive
 charCode[charName.fearmonger] = "fearmonger"
 charIcon[charName.fearmonger] = SprFearmonger
 charTitle[charName.fearmonger] = "Страшила"
-charDesc[charName.fearmonger] = "Каждую ночь выберите игрока: если вы номинировали его и его казнили, его команда проигрывает. Все игроки знают, если вы выбираете нового игрока."
+charDesc[charName.fearmonger] = "Каждую ночь вы выбираете игрока: если вы номинировали его и его казнили, его команда проигрывает. Все игроки знают, если вы выбираете нового игрока."
 charSet[charName.fearmonger] = setName.experimental;
 group[charName.fearmonger] = charGroup.minion;
 f_night[charName.fearmonger] = 25;
@@ -1291,7 +1293,7 @@ amy_order[charName.fisherman] = amyOrder.dayOncePerGame
 charCode[charName.general] = "general"
 charIcon[charName.general] = SprGeneral
 charTitle[charName.general] = "Генерал"
-charDesc[charName.general] = "Каждую ночь вы узнаёте, какая сторона по мнению рассказчика выигрывает: Добрая, Злая или ни одна из них."
+charDesc[charName.general] = "Каждую ночь вы узнаёте, какая сторона по мнению рассказчика выигрывает."
 charSet[charName.general] = setName.experimental;
 group[charName.general] = charGroup.townsfolk;
 f_night[charName.general] = 51;
@@ -1311,7 +1313,7 @@ amy_order[charName.goblin] = amyOrder.dayActions
 charCode[charName.golem] = "golem"
 charIcon[charName.golem] = SprGolem
 charTitle[charName.golem] = "Голем"
-charDesc[charName.golem] = "Вы можете номинировать только один раз за игру. Если вы номинировали игрока и он не демон, он умирает."
+charDesc[charName.golem] = "Вы можете номинировать только один раз за игру. Если вы номинировали игрока и он не Демон, он умирает."
 charSet[charName.golem] = setName.experimental;
 group[charName.golem] = charGroup.outsider;
 f_night[charName.golem] = 0;
@@ -1321,7 +1323,7 @@ amy_order[charName.golem] = amyOrder.dayOncePerGame
 charCode[charName.heretic] = "heretic"
 charIcon[charName.heretic] = SprHeretic
 charTitle[charName.heretic] = "Еретик"
-charDesc[charName.heretic] = "Тот, кто проигрывает, побеждает и наоборот, даже если вы мертвы."
+charDesc[charName.heretic] = "Тот, кто проигрывает, побеждает, и наоборот, даже если вы мертвы."
 charSet[charName.heretic] = setName.experimental;
 group[charName.heretic] = charGroup.outsider;
 f_night[charName.heretic] = 0;
@@ -1331,7 +1333,7 @@ amy_order[charName.heretic] = amyOrder.passive
 charCode[charName.huntsman] = "huntsman"
 charIcon[charName.huntsman] = SprHuntsman
 charTitle[charName.huntsman] = "Охотник"
-charDesc[charName.huntsman] = "Раз за игру, ночью выберите игрока: если выбрана Мадам, она становится Горожанином, которого нет в игре. [+Мадам]"
+charDesc[charName.huntsman] = "Раз за игру, ночью, выберите игрока: если выбрана Мадам, она становится Горожанином, которого нет в игре. [+Мадам]"
 charSet[charName.huntsman] = setName.experimental;
 group[charName.huntsman] = charGroup.townsfolk;
 f_night[charName.huntsman] = 29;
@@ -1361,7 +1363,7 @@ amy_order[charName.legion] = amyOrder.everyNightAsterisk
 charCode[charName.leviathan] = "leviathan"
 charIcon[charName.leviathan] = SprLeviathan
 charTitle[charName.leviathan] = "Левиафан"
-charDesc[charName.leviathan] = "Если казнено больше 1 доброго игрока, Зло побеждает. Все игроки знают, что вы в игре. После 5 дня Зло побеждает."
+charDesc[charName.leviathan] = "Если казнено больше 1 Доброго игрока, Зло побеждает. Все игроки знают, что вы в игре. После 5 дня Зло побеждает."
 charSet[charName.leviathan] = setName.experimental;
 group[charName.leviathan] = charGroup.demon;
 f_night[charName.leviathan] = 56;
@@ -1380,8 +1382,8 @@ amy_order[charName.lilmonsta] = amyOrder.everyNight
 
 charCode[charName.lleech] = "lleech"
 charIcon[charName.lleech] = SprLleech
-charTitle[charName.lleech] = "Пиявка"
-charDesc[charName.lleech] = "Каждую ночь* выберите игрока: он умирает. В начале игры вы выбираете живого игрока: он отравлен, вы умираете если (и только если) он умрёт."
+charTitle[charName.lleech] = "Ллич"
+charDesc[charName.lleech] = "Каждую ночь* вы выбираете игрока: он умирает. В начале игры вы выбираете живого игрока: он отравлен, вы умираете если (и только если) он умрёт."
 charSet[charName.lleech] = setName.experimental;
 group[charName.lleech] = charGroup.demon;
 f_night[charName.lleech] = 15;
@@ -1391,7 +1393,7 @@ amy_order[charName.lleech] = amyOrder.everyNight
 charCode[charName.lycanthrope] = "lycanthrope"
 charIcon[charName.lycanthrope] = SprLycanthrope
 charTitle[charName.lycanthrope] = "Ликантроп"
-charDesc[charName.lycanthrope] = "Каждую ночь* выберите живого игрока: если он Добрый, он умирает, но это единственный игрок, который может умереть этой ночью."
+charDesc[charName.lycanthrope] = "Каждую ночь* вы выбираете живого игрока: если он Добрый, он умирает, но это единственный игрок, который может умереть этой ночью."
 charSet[charName.lycanthrope] = setName.experimental;
 group[charName.lycanthrope] = charGroup.townsfolk;
 f_night[charName.lycanthrope] = 0;
@@ -1430,8 +1432,8 @@ amy_order[charName.mezepheles] = amyOrder.oncePerGame
 
 charCode[charName.nightwatchman] = "nightwatchman"
 charIcon[charName.nightwatchman] = SprNightwatchman
-charTitle[charName.nightwatchman] = "Ночной Сторож"
-charDesc[charName.nightwatchman] = "Один раз за игру, ночью, выберите игрока: он узнаёт, кто вы."
+charTitle[charName.nightwatchman] = "Ночной сторож"
+charDesc[charName.nightwatchman] = "Раз в игру, ночью, выберите игрока. Этот игрок узнаёт, кто вы."
 charSet[charName.nightwatchman] = setName.experimental;
 group[charName.nightwatchman] = charGroup.townsfolk;
 f_night[charName.nightwatchman] = 48;
@@ -1441,7 +1443,7 @@ amy_order[charName.nightwatchman] = amyOrder.oncePerGame
 charCode[charName.noble] = "noble"
 charIcon[charName.noble] = SprNoble
 charTitle[charName.noble] = "Знать"
-charDesc[charName.noble] = "В начале игры, вы узнаёте 3 игроков. Один и только один из них - Злодей."
+charDesc[charName.noble] = "В начале вы знаете 3 игроков. Один и только один из них - Злодей."
 charSet[charName.noble] = setName.experimental;
 group[charName.noble] = charGroup.townsfolk;
 f_night[charName.noble] = 45;
@@ -1451,7 +1453,7 @@ amy_order[charName.noble] = amyOrder.firstNight
 charCode[charName.pixie] = "pixie"
 charIcon[charName.pixie] = SprPixie
 charTitle[charName.pixie] = "Пикси"
-charDesc[charName.pixie] = "В начале вы узнаёте 1 персонажа Горожанина, который есть в игре. Если вы спятили, что вы - этот персонаж, то получите его способность, когда он умрёт."
+charDesc[charName.pixie] = 'В начале вы знаете 1 персонажа Горожанина, который есть в игре. Если вы "спятили", что вы - этот персонаж, то получите его способность, когда он умрёт.'
 charSet[charName.pixie] = setName.experimental;
 group[charName.pixie] = charGroup.townsfolk;
 f_night[charName.pixie] = 28;
@@ -1481,7 +1483,7 @@ amy_order[charName.poppygrower] = amyOrder.passive
 charCode[charName.preacher] = "preacher"
 charIcon[charName.preacher] = SprPreacher
 charTitle[charName.preacher] = "Проповедник"
-charDesc[charName.preacher] = "Каждую ночь выберите игрока: если выбран Приспешник, он об этом узнает. Все выбранные Приспешники теряют способности."
+charDesc[charName.preacher] = "Каждую ночь выберите игрока: если выбран Приспешник, он об этом узнаёт. Все выбранные Приспешники теряют способности."
 charSet[charName.preacher] = setName.experimental;
 group[charName.preacher] = charGroup.townsfolk;
 f_night[charName.preacher] = 13;
@@ -1491,7 +1493,7 @@ amy_order[charName.preacher] = amyOrder.everyNight
 charCode[charName.psychopath] = "psychopath"
 charIcon[charName.psychopath] = SprPsychopath
 charTitle[charName.psychopath] = "Психопат"
-charDesc[charName.psychopath] = "Каждый день, перед номинациями, публично выберите игрока: он умирает. Если вы казнены, вы умираете только если проиграете в камень-ножницы-бумага."
+charDesc[charName.psychopath] = "Каждый день, перед номинациями, публично выберите игрока. Этот игрок умирает. Если вы казнены, вы умираете только если проиграете в камень-ножницы-бумага."
 charSet[charName.psychopath] = setName.experimental;
 group[charName.psychopath] = charGroup.minion;
 f_night[charName.psychopath] = 0;
@@ -1501,7 +1503,7 @@ amy_order[charName.psychopath] = amyOrder.dayActions
 charCode[charName.puzzlemaster] = "puzzlemaster"
 charIcon[charName.puzzlemaster] = SprPuzzlemaster
 charTitle[charName.puzzlemaster] = "Мастер головоломок"
-charDesc[charName.puzzlemaster] = "1 игрок пьян, даже если вы мертвы. Если вы угадаете кто (один раз за игру), узнаёте, кто Демон. Если вы угадали неправильно, получите ложную информацию."
+charDesc[charName.puzzlemaster] = "1 игрок пьян, даже если вы мертвы. Если вы угадаете кто (один раз за игру), узнаете, кто Демон. Если вы угадали неправильно, получите ложную информацию."
 charSet[charName.puzzlemaster] = setName.experimental;
 group[charName.puzzlemaster] = charGroup.outsider;
 f_night[charName.puzzlemaster] = 0;
@@ -1531,7 +1533,7 @@ amy_order[charName.snitch] = amyOrder.firstNight
 charCode[charName.widow] = "widow"
 charIcon[charName.widow] = SprWidow
 charTitle[charName.widow] = "Вдова"
-charDesc[charName.widow] = "В первую ночь посмотрите гримуар и выберите игрока: этот игрок отравлен. 1 Добрый игрок знает, что в игре есть Вдова."
+charDesc[charName.widow] = "В первую ночь посмотрите Гримуар и выберите игрока: этот игрок отравлен. 1 Добрый игрок знает, что в игре есть Вдова."
 charSet[charName.widow] = setName.experimental;
 group[charName.widow] = charGroup.minion;
 f_night[charName.widow] = 17;
@@ -1617,12 +1619,12 @@ fabledDesc[fabledName.djinn] = "Используйте специальное п
 fabledCode[fabledName.doomsayer] = "doomsayer"
 fabledIcon[fabledName.doomsayer] = SprDoomsayer
 fabledTitle[fabledName.doomsayer] = "Пророк конца света"
-fabledDesc[fabledName.doomsayer] = "Если 4+ игроков живы, каждый живой игрок может публично выбрать (раз за игру), что игрок на его стороне умирает."
+fabledDesc[fabledName.doomsayer] = "Если 4+ игроков живы, каждый живой игрок может публично выбрать (раз за игру), что игрок его стороны умирает."
 
 fabledCode[fabledName.duchess] = "duchess"
 fabledIcon[fabledName.duchess] = SprDuchess
 fabledTitle[fabledName.duchess] = "Герцогиня"
-fabledDesc[fabledName.duchess] = "Каждый день 3 игрока могут выбрать погостить у вас. Каждую ночь* каждый гость узнаёт, сколько гостей было Злодеями, но один из них получает ложную информацию."
+fabledDesc[fabledName.duchess] = "Каждый день 3 игрока могут выбрать посетить вас. Каждую ночь* каждый посетитель узнаёт, сколько из них было Злодеями, но один из них получает ложную информацию."
 
 fabledCode[fabledName.fibbin] = "fibbin"
 fabledIcon[fabledName.fibbin] = SprFibbin
@@ -1632,7 +1634,7 @@ fabledDesc[fabledName.fibbin] = "Один раз за игру, 1 Добрый �
 fabledCode[fabledName.fiddler] = "fiddler"
 fabledIcon[fabledName.fiddler] = SprFiddler
 fabledTitle[fabledName.fiddler] = "Скрипач"
-fabledDesc[fabledName.fiddler] = "Раз за игру Демон в закрытую выбирает игрока из противоположной команды: все игроки выбирают, кто из них двоих побеждает."
+fabledDesc[fabledName.fiddler] = "Раз за игру Демон в закрытую выбирает игрока противоположной стороны: все игроки выбирают, кто из них двоих побеждает."
 
 fabledCode[fabledName.hellslibrarian] = "hells_librarian"
 fabledIcon[fabledName.hellslibrarian] = SprHellsLibrarian
@@ -1718,7 +1720,7 @@ travellerDesc[travellerName.beggar] = "Вы обязаны использова�
 travellerCode[travellerName.bishop] = "bishop"
 travellerIcon[travellerName.bishop] = SprBishop
 travellerTitle[travellerName.bishop] = "Епископ"
-travellerDesc[travellerName.bishop] = "Только рассказчик может номинировать. Каждый день должны быть номинированы хотя бы по одному игроку с каждой стороны."
+travellerDesc[travellerName.bishop] = "Только рассказчик может номинировать. Каждый день должен быть номинирован хотя бы 1 игрок противоположной команды."
 
 travellerCode[travellerName.bonecollector] = "bone_collector"
 travellerIcon[travellerName.bonecollector] = SprBoneCollector
@@ -1768,7 +1770,7 @@ travellerDesc[travellerName.judge] = "Раз за игру, если номин�
 travellerCode[travellerName.matron] = "matron"
 travellerIcon[travellerName.matron] = SprMatron
 travellerTitle[travellerName.matron] = "Надзирательница"
-travellerDesc[travellerName.matron] = "Каждый день можете выбрать до 3 наборов из 2 игроков: они меняются местами в кругу игроков. Игроки не имеют право общаться приватно."
+travellerDesc[travellerName.matron] = "Каждый день можете выбрать до 3 наборов из 2 игроков: они меняются местами в кругу игроков. Игроки не могут вставать, чтобы приватно общаться."
 
 travellerCode[travellerName.scapegoat] = "scapegoat"
 travellerIcon[travellerName.scapegoat] = SprScapegoat
@@ -2188,7 +2190,7 @@ tag_filter_arr[39] = scr_make_array(charName.pixie,charName.cerenovus,charName.m
 
 tag_filter_desc[40] = "Способности, зависящие от мёртвых игроков, работающие даже после смерти, позволяющие выбирать только мёртвых";
 tag_filter_name[40] = "Мёртвые";
-tag_filter_arr[40] = scr_make_array(charName.king,charName.heretic,charName.cannibal,charName.atheist,charName.vigormortis,charName.oracle,charName.undertaker,charName.recluse,charName.spy,charName.professor,charName.zombuul);
+tag_filter_arr[40] = scr_make_array(charName.king,charName.heretic,charName.cannibal,charName.atheist,charName.vigormortis,charName.oracle,charName.undertaker,charName.recluse,charName.spy,charName.professor,charName.zombuul,charName.politician);
 
 tag_filter_desc[41] = "Персонажи, получающие способности, дающие способности и забирающие способности. Также всё, что модифицирует способности";
 tag_filter_name[41] = "Способности";
@@ -2678,6 +2680,8 @@ highlight_tag = -1;
 if !button_lock {
     if keyboard_check_pressed(vk_f5)
         background_enable = !background_enable;
+    if keyboard_check_pressed(vk_f9)
+        pic_mode = !pic_mode;
 
     if help_box_open {
         if keyboard_check_pressed(vk_anykey)
@@ -2772,15 +2776,15 @@ if draw_mode = 0 {
     if (highlight_list &gt; -1 || highlight_selection &gt; -1) {
         tmp = max(highlight_list, highlight_selection);
         if list_mode = 0 || highlight_selection &gt; -1 {
-            draw_sprite_ext(charIcon[tmp],0,180,3360, 1.5, 1.5, 0, image_blend, 1);
+            draw_sprite_ext(charIcon[tmp],pic_mode,180,3360, 1.5/(1+pic_scale*pic_mode), 1.5/(1+pic_scale*pic_mode), 0, image_blend, 1);
             draw_text_ext_colour(330,3360,charTitle[tmp],60,410,c_black,c_black,c_black,c_black,1);
             draw_text_ext_colour(740,3360,charDesc[tmp],60,1700,c_black,c_black,c_black,c_black,1);
         } else if list_mode = 1 {
-            draw_sprite_ext(travellerIcon[tmp],0,180,3360, 1.5, 1.5, 0, image_blend, 1);
+            draw_sprite_ext(travellerIcon[tmp],pic_mode,180,3360, 1.5/(1+pic_scale*pic_mode), 1.5/(1+pic_scale*pic_mode), 0, image_blend, 1);
             draw_text_ext_colour(330,3360,travellerTitle[tmp],60,410,c_black,c_black,c_black,c_black,1);
             draw_text_ext_colour(740,3360,travellerDesc[tmp],60,1700,c_black,c_black,c_black,c_black,1);
         } else if list_mode = 2 {
-            draw_sprite_ext(fabledIcon[tmp],0,180,3360, 1.5, 1.5, 0, image_blend, 1);
+            draw_sprite_ext(fabledIcon[tmp],pic_mode,180,3360, 1.5/(1+pic_scale*pic_mode), 1.5/(1+pic_scale*pic_mode), 0, image_blend, 1);
             draw_text_ext_colour(330,3360,fabledTitle[tmp],60,410,c_black,c_black,c_black,c_black,1);
             draw_text_ext_colour(740,3360,fabledDesc[tmp],60,1700,c_black,c_black,c_black,c_black,1);
         }
@@ -2794,7 +2798,7 @@ if draw_mode = 0 {
     for(i=0; i&lt;=charGroup.demon; i++) {
         if (pick_group_amount[i]) {
             for(j=0; j&lt;pick_group_amount[i]; j++) {
-                draw_sprite_ext(charIcon[pick_group_select[i,j]],0,ui_icon_x+(j%9)*150,ui_icon_y+(j div 9)*150+460*i,1,1,0,image_blend,1);
+                draw_sprite_ext(charIcon[pick_group_select[i,j]],pic_mode,ui_icon_x+(j%9)*150,ui_icon_y+(j div 9)*150+460*i,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
                 tmp_jynx_draw = 0;
                 tmp_jynx_draw_icon = SprDjinn;
                 for(k=0; k&lt;=charGroup.demon; k++)
@@ -2810,7 +2814,7 @@ if draw_mode = 0 {
                         }
                     }
                 if (tmp_jynx_draw)
-                    draw_sprite_ext(tmp_jynx_draw_icon,0,ui_icon_x+(j%9)*150+50,ui_icon_y+(j div 9)*150+460*i+50,0.4,0.4,0,image_blend,1);
+                    draw_sprite_ext(tmp_jynx_draw_icon,pic_mode,ui_icon_x+(j%9)*150+50,ui_icon_y+(j div 9)*150+460*i+50,0.4/(1+pic_scale*pic_mode),0.4/(1+pic_scale*pic_mode),0,image_blend,1);
             }
         }
     }
@@ -2819,7 +2823,7 @@ if draw_mode = 0 {
         switch(list_mode) {
         
             case 0:
-                draw_sprite_ext(charIcon[filter_list[i+scroll]],0,150,200+i*150,1,1,0,image_blend,1);
+                draw_sprite_ext(charIcon[filter_list[i+scroll]],pic_mode,150,200+i*150,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
                 draw_text_colour(300,200+i*150,charTitle[filter_list[i+scroll]],c_black,c_black,c_black,c_black,1)
                 if scr_char_picked(filter_list[i+scroll])
                     draw_sprite_ext(SprUiTick,0,850,200+i*150,1,1,0,image_blend,1)
@@ -2828,14 +2832,14 @@ if draw_mode = 0 {
             break;
             
             case 1:
-                draw_sprite_ext(travellerIcon[filter_list[i+scroll]],0,150,200+i*150,1,1,0,image_blend,1);
+                draw_sprite_ext(travellerIcon[filter_list[i+scroll]],pic_mode,150,200+i*150,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
                 draw_text_colour(300,200+i*150,travellerTitle[filter_list[i+scroll]],c_black,c_black,c_black,c_black,1)
                 if traveller_pick[filter_list[i+scroll]]
                     draw_sprite_ext(SprUiTick,0,850,200+i*150,1,1,0,image_blend,1)
             break;
             
             case 2:
-                draw_sprite_ext(fabledIcon[filter_list[i+scroll]],0,150,200+i*150,1,1,0,image_blend,1);
+                draw_sprite_ext(fabledIcon[filter_list[i+scroll]],pic_mode,150,200+i*150,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
                 draw_text_colour(300,200+i*150,fabledTitle[filter_list[i+scroll]],c_black,c_black,c_black,c_black,1)
                 if fabled_pick[filter_list[i+scroll]]
                     draw_sprite_ext(SprUiTick,0,850,200+i*150,1,1,0,image_blend,1)
@@ -2892,7 +2896,7 @@ if draw_mode = 0 {
         if (help_box_open) {
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
-            draw_text_ext_colour(box_ui_x+30,box_ui_y+100,"Открыть дополнительные фильтры: Пробел##На дополнительные фильтры можно нажимать ПКМ - это означает не включать в поиск##Чтобы получить распечатку способностей Сказок и Путников - ПКМ по ним в основных фильтрах##Чтобы собрать основные сценарии - ПКМ по их названиям в фильтрах##Если у иконки персонажа в основной области маленькая иконка в углу - у вас в сценарии будут правила Джина##Если выбирать Сказки и Путников - они будут добавлены как рекоммендованные в ночной порядок##Убрать задник: F5",
+            draw_text_ext_colour(box_ui_x+30,box_ui_y+100,"Открыть дополнительные фильтры: Пробел##На дополнительные фильтры можно нажимать ПКМ - это означает не включать в поиск##Чтобы получить распечатку способностей Сказок и Путников - ПКМ по ним в основных фильтрах##Чтобы собрать основные сценарии - ПКМ по их названиям в фильтрах##Если у иконки персонажа в основной области маленькая иконка в углу - у вас в сценарии будут правила Джина##Если выбирать Сказки и Путников - они будут добавлены как рекоммендованные в ночной порядок##Убрать задник: F5##Старые/новые иконки персонажей: F9",
              70,1770,c_black,c_black,c_black,c_black,1);
         }
         if (filter_box_open) {
@@ -2932,14 +2936,14 @@ if draw_mode = 1 {
             }
             pointer_y+=100;
             for(j=0; j&lt;pick_group_amount[i]; j++) {
-                draw_sprite_ext(charIcon[pick_group_select[i, j]], 0, 130,pointer_y,1,1,0,image_blend,1);
+                draw_sprite_ext(charIcon[pick_group_select[i, j]], pic_mode, 130,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
                 draw_text_ext_colour(250,pointer_y,charTitle[pick_group_select[i, j]],60,2480,c_black,c_black,c_black,c_black,1);
                 draw_text_ext_colour(620,pointer_y,charDesc[pick_group_select[i, j]],50,1820,c_black,c_black,c_black,c_black,1);
                 pointer_x = 0;
                 for(k=0; k&lt;=charGroup.demon; k++)
                     for(l=0; l&lt;pick_group_amount[k]; l++)
                         if pick_group_select[i, j] &lt; pick_group_select[k, l] &amp;&amp; scr_jynxed(pick_group_select[i, j],pick_group_select[k, l]) {
-                            draw_sprite_ext(charIcon[pick_group_select[k, l]],0,300+pointer_x,pointer_y+50,0.4,0.4,0,image_blend,1);
+                            draw_sprite_ext(charIcon[pick_group_select[k, l]],pic_mode,300+pointer_x,pointer_y+50,0.4/(1+pic_scale*pic_mode),0.4/(1+pic_scale*pic_mode),0,image_blend,1);
                             pointer_x += 50;
                         }
                 if j = pick_group_amount[i]-1
@@ -2965,18 +2969,22 @@ if draw_mode = 2 {
     pointer_y = 80;
     for(i=1; i&lt;first_night_order_array_length; i++) {
         found = 0;
+        remove_scale = 1;
         if (i = f_night_minion_info) {
             found = 1;
             spr = SprMinion;
             text = "Информация для приспешников"
+            remove_scale = 0;
         } else if (i = f_night_demon_info) {
             found = 1;
             spr = SprDemon;
             text = "Информация для демона"
+            remove_scale = 0;
         } else if (i = f_night_dawn_order) {
             found = 1;
             spr = SprDawn;
             text = "Рассвет"
+            remove_scale = 0;
         } else {
             for(j=0; j&lt;4; j++)
                 for(k=0; k&lt;pick_group_amount[j]; k++) {
@@ -2994,7 +3002,7 @@ if draw_mode = 2 {
                 }
         }
         if found {
-            draw_sprite_ext(spr, 0, 160, pointer_y, 1, 1, 0, image_blend, 1);
+            draw_sprite_ext(spr, pic_mode, 160, pointer_y, 1/(1+pic_scale*pic_mode*remove_scale), 1/(1+pic_scale*pic_mode*remove_scale), 0, image_blend, 1);
             draw_text_colour(280, pointer_y, text, c_black, c_black, c_black, c_black, 1);
             pointer_y+=120;
         }
@@ -3003,14 +3011,17 @@ if draw_mode = 2 {
     pointer_y = 3427;
     for(i=other_night_order_array_length-1; i&gt;=0; i--) {
         found = 0;
+        remove_scale = 1;
         if (i = 0) {
             found = 1;
             spr = SprDusk;
             text = "Закат"
+            remove_scale = 0;
         } else if (i = o_night_dawn_order) {
             found = 1;
             spr = SprDawn;
             text = "Рассвет"
+            remove_scale = 0;
         } else {
             for(j=0; j&lt;4; j++)
                 for(k=0; k&lt;pick_group_amount[j]; k++) {
@@ -3028,7 +3039,7 @@ if draw_mode = 2 {
                 }
         }
         if found {
-            draw_sprite_ext(spr, 0, 1900, pointer_y, 1, 1, 0, image_blend, 1);
+            draw_sprite_ext(spr, pic_mode, 1900, pointer_y, 1/(1+pic_scale*pic_mode*remove_scale), 1/(1+pic_scale*pic_mode*remove_scale), 0, image_blend, 1);
             draw_text_colour(2020, pointer_y, text, c_black, c_black, c_black, c_black, 1);
             pointer_y-=120;
         }
@@ -3045,7 +3056,7 @@ if draw_mode = 2 {
         pointer_x = 850;
         for(i=1;i&lt;travellerName.lastChar;i++)
             if traveller_pick[i] {
-                draw_sprite_ext(travellerIcon[i],0,pointer_x,pointer_y,0.7,0.7,0,image_blend,1)
+                draw_sprite_ext(travellerIcon[i],pic_mode,pointer_x,pointer_y,0.7/(1+pic_scale*pic_mode),0.7/(1+pic_scale*pic_mode),0,image_blend,1)
                 pointer_x+=110;
             }
         pointer_y += 200;
@@ -3057,7 +3068,7 @@ if draw_mode = 2 {
         pointer_x = 850;
         for(i=0;i&lt;fabledName.lastChar;i++)
             if fabled_pick[i] {
-                draw_sprite_ext(fabledIcon[i],0,pointer_x,pointer_y,0.7,0.7,0,image_blend,1)
+                draw_sprite_ext(fabledIcon[i],pic_mode,pointer_x,pointer_y,0.7/(1+pic_scale*pic_mode),0.7/(1+pic_scale*pic_mode),0,image_blend,1)
                 pointer_x+=110;
             }
         pointer_y += 200;
@@ -3069,8 +3080,8 @@ if draw_mode = 2 {
                 for(l=0; l&lt;pick_group_amount[k]; l++) {
                     if pick_group_select[i,j] &lt; pick_group_select[k,l] &amp;&amp; scr_jynxed(pick_group_select[i,j],pick_group_select[k,l]) {
                         if jynx_count &lt; jynx_max {
-                            draw_sprite_ext(charIcon[pick_group_select[i,j]],0,800,pointer_y,1,1,0,image_blend,1)
-                            draw_sprite_ext(charIcon[pick_group_select[k,l]],0,920,pointer_y,1,1,0,image_blend,1)
+                            draw_sprite_ext(charIcon[pick_group_select[i,j]],pic_mode,800,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1)
+                            draw_sprite_ext(charIcon[pick_group_select[k,l]],pic_mode,920,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1)
                             draw_text_ext_colour(1020,pointer_y,scr_jynxed_desc(pick_group_select[i,j],pick_group_select[k,l]),50,750,c_black, c_black, c_black, c_black, 1);
                             pointer_y += 150;
                         }
@@ -3091,7 +3102,7 @@ if draw_mode = 3 {
     draw_sprite_ext(SprTravellers,1,0,pointer_y,1,1,0,image_blend,1);
     pointer_y+=100;
     for(i=1; i&lt;travellerName.lastChar; i++) {
-        draw_sprite_ext(travellerIcon[i], 0, 130,pointer_y,1,1,0,image_blend,1);
+        draw_sprite_ext(travellerIcon[i], pic_mode, 130,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
         draw_text_ext_colour(250,pointer_y,travellerTitle[i],60,2480,c_black,c_black,c_black,c_black,1);
         draw_text_ext_colour(620,pointer_y,travellerDesc[i],50,1820,c_black,c_black,c_black,c_black,1);
         pointer_y+=120;
@@ -3108,7 +3119,7 @@ if draw_mode = 4 {
     draw_sprite_ext(SprFabled,1,0,pointer_y,1,1,0,image_blend,1);
     pointer_y+=100;
     for(i=0; i&lt;fabledName.lastChar; i++) {
-        draw_sprite_ext(fabledIcon[i], 0, 130,pointer_y,1,1,0,image_blend,1);
+        draw_sprite_ext(fabledIcon[i], pic_mode, 130,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
         draw_text_ext_colour(250,pointer_y,fabledTitle[i],60,2480,c_black,c_black,c_black,c_black,1);
         draw_text_ext_colour(620,pointer_y,fabledDesc[i],50,1820,c_black,c_black,c_black,c_black,1);
         pointer_y+=120;

@@ -107,7 +107,6 @@
       <sprite>sprites\SprAcrobat</sprite>
       <sprite>sprites\SprAlchemist</sprite>
       <sprite>sprites\SprAlHadikhia</sprite>
-      <sprite>sprites\SprVizier</sprite>
       <sprite>sprites\SprAmnesiac</sprite>
       <sprite>sprites\SprAtheist</sprite>
       <sprite>sprites\SprBalloonist</sprite>
@@ -120,7 +119,6 @@
       <sprite>sprites\SprEngineer</sprite>
       <sprite>sprites\SprFarmer</sprite>
       <sprite>sprites\SprFearmonger</sprite>
-      <sprite>sprites\SprOrganGrinder</sprite>
       <sprite>sprites\SprFisherman</sprite>
       <sprite>sprites\SprGeneral</sprite>
       <sprite>sprites\SprGoblin</sprite>
@@ -128,6 +126,7 @@
       <sprite>sprites\SprHeretic</sprite>
       <sprite>sprites\SprHuntsman</sprite>
       <sprite>sprites\SprKing</sprite>
+      <sprite>sprites\SprKnight</sprite>
       <sprite>sprites\SprLegion</sprite>
       <sprite>sprites\SprLeviathan</sprite>
       <sprite>sprites\SprLilMonsta</sprite>
@@ -138,6 +137,7 @@
       <sprite>sprites\SprMezepheles</sprite>
       <sprite>sprites\SprNightwatchman</sprite>
       <sprite>sprites\SprNoble</sprite>
+      <sprite>sprites\SprOrganGrinder</sprite>
       <sprite>sprites\SprPixie</sprite>
       <sprite>sprites\SprPolitician</sprite>
       <sprite>sprites\SprPoppyGrower</sprite>
@@ -146,26 +146,26 @@
       <sprite>sprites\SprPuzzlemaster</sprite>
       <sprite>sprites\SprRiot</sprite>
       <sprite>sprites\SprSnitch</sprite>
-      <sprite>sprites\SprWidow</sprite>
-      <sprite>sprites\SprKnight</sprite>
       <sprite>sprites\SprSteward</sprite>
+      <sprite>sprites\SprVizier</sprite>
+      <sprite>sprites\SprWidow</sprite>
     </sprites>
     <sprites name="Fabled">
       <sprite>sprites\SprAngel</sprite>
+      <sprite>sprites\SprBootlegger</sprite>
       <sprite>sprites\SprBuddhist</sprite>
       <sprite>sprites\SprDjinn</sprite>
       <sprite>sprites\SprDoomsayer</sprite>
       <sprite>sprites\SprDuchess</sprite>
       <sprite>sprites\SprFibbin</sprite>
       <sprite>sprites\SprFiddler</sprite>
+      <sprite>sprites\SprGardener</sprite>
       <sprite>sprites\SprHellsLibrarian</sprite>
       <sprite>sprites\SprRevolutionary</sprite>
       <sprite>sprites\SprSentinel</sprite>
       <sprite>sprites\SprSpiritOfIvory</sprite>
       <sprite>sprites\SprStormCatcher</sprite>
       <sprite>sprites\SprToymaker</sprite>
-      <sprite>sprites\SprGardener</sprite>
-      <sprite>sprites\SprBootlegger</sprite>
     </sprites>
     <sprites name="Travellers">
       <sprite>sprites\SprApprentice</sprite>
