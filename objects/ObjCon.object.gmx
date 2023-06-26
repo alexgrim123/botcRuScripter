@@ -58,8 +58,6 @@ arrow_button_cd = 0;
 background_enable = 1;
 pic_mode = 1; // 0 - old pics, 1 - new pics
 pic_scale = 1.8;
-//first_night_last = 56;
-//other_night_last = 72;
 
 // filter list and selection
 highlight_list = -1;
@@ -237,6 +235,7 @@ enum charName {
     vizier,
     knight,
     steward,
+    highPriestess,
     widow,
     lastChar
 };
@@ -1579,6 +1578,16 @@ group[charName.steward] = charGroup.townsfolk;
 f_night[charName.steward] = 43;
 o_night[charName.steward] = 0;
 amy_order[charName.steward] = amyOrder.firstNight
+
+charCode[charName.highPriestess] = "high_priestess"
+charIcon[charName.highPriestess] = SprHighPriestess
+charTitle[charName.highPriestess] = "Верховная жрица"
+charDesc[charName.highPriestess] = "Каждую ночь вы узнаёте с каким игроком, по мнению Рассказчика, вам стоит поговорить больше всего."
+charSet[charName.highPriestess] = setName.experimental;
+group[charName.highPriestess] = charGroup.townsfolk;
+f_night[charName.highPriestess] = 51;
+o_night[charName.highPriestess] = 68;
+amy_order[charName.highPriestess] = amyOrder.everyNight
 </string>
           </argument>
         </arguments>
@@ -1865,6 +1874,7 @@ first_night_order_array = scr_make_array(
     charName.nightwatchman,
     charName.cultleader,
     charName.spy,
+    charName.highPriestess,
     charName.general,
     charName.chambermaid,
     charName.mathematician,
@@ -1949,6 +1959,7 @@ other_night_order_array = scr_make_array(
     charName.cultleader,
     charName.butler,
     charName.spy,
+    charName.highPriestess,
     charName.general,
     charName.chambermaid,
     charName.mathematician,
@@ -1959,8 +1970,8 @@ other_night_order_array_length = array_length_1d(other_night_order_array)
 
 f_night_demon_info = 12;
 f_night_minion_info = 9;
-f_night_dawn_order = 58;
-o_night_dawn_order = 77;
+f_night_dawn_order = 59;
+o_night_dawn_order = 78;
 
 for(i=0; i&lt;charName.lastChar; i++) {
     for(j=1;j&lt;first_night_order_array_length;j++) {
@@ -2062,7 +2073,7 @@ tag_filter_arr[7] = scr_make_array(charName.marionette,charName.cannibal,charNam
 
 tag_filter_desc[8] = "Персонажи, просыпающиеся каждую ночь";
 tag_filter_name[8] = "Каждую ночь";
-tag_filter_arr[8] = scr_make_array(charName.preacher,charName.nightwatchman,charName.cultleader,charName.lleech,charName.lilmonsta,charName.king,charName.huntsman,charName.general,charName.fearmonger,charName.engineer,charName.bountyhunter,charName.balloonist,charName.witch,charName.snakecharmer,charName.seamstress,charName.philosopher,charName.mathematician,charName.dreamer,charName.cerenovus,charName.sailor,charName.pukka,charName.devilsadvocate,charName.chambermaid,charName.empath, charName.fortuneteller, charName.poisoner, charName.spy);
+tag_filter_arr[8] = scr_make_array(charName.highPriestess,charName.preacher,charName.nightwatchman,charName.cultleader,charName.lleech,charName.lilmonsta,charName.king,charName.huntsman,charName.general,charName.fearmonger,charName.engineer,charName.bountyhunter,charName.balloonist,charName.witch,charName.snakecharmer,charName.seamstress,charName.philosopher,charName.mathematician,charName.dreamer,charName.cerenovus,charName.sailor,charName.pukka,charName.devilsadvocate,charName.chambermaid,charName.empath, charName.fortuneteller, charName.poisoner, charName.spy);
 
 tag_filter_desc[9] = "Персонажи, просыпающиеся каждую ночь, кроме первой";
 tag_filter_name[9] = "Каждую ночь*";
@@ -2094,7 +2105,7 @@ tag_filter_arr[15] = scr_make_array(charName.lycanthrope,charName.lleech,charNam
 
 tag_filter_desc[16] = "Персонажи, которые могут срабатывать или не срабатывать, а также требующие объективной оценки игры / идей от рассказчика";
 tag_filter_name[16] = "Решение рассказчика";
-tag_filter_arr[16] = scr_make_array(charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy);
+tag_filter_arr[16] = scr_make_array(charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy);
 
 tag_filter_desc[17] = "Используют механику отравления (отравление чаще связано со Злодеями)";
 tag_filter_name[17] = "Отравление";
@@ -2154,7 +2165,7 @@ tag_filter_arr[30] = scr_make_array(charName.alhadikhia,charName.acrobat,charNam
 
 tag_filter_desc[31] = "Персонажи, получающие информацию разного рода, не связанную напрямую с тем, кто Добрый, а кто Злодей (или информация неопределённая)";
 tag_filter_name[31] = "Всякая информация";
-tag_filter_arr[31] = scr_make_array(charName.king,charName.general,charName.fisherman,charName.amnesiac,charName.acrobat,charName.vortox,charName.savant,charName.mathematician,charName.artist,charName.chambermaid,charName.gossip);
+tag_filter_arr[31] = scr_make_array(charName.highPriestess,charName.king,charName.general,charName.fisherman,charName.amnesiac,charName.acrobat,charName.vortox,charName.savant,charName.mathematician,charName.artist,charName.chambermaid,charName.gossip);
 
 tag_filter_desc[32] = "Персонажи, которые могут не умереть днём (например, от казни)";
 tag_filter_name[32] = "Не умирает днём";
@@ -2170,7 +2181,7 @@ tag_filter_arr[34] = scr_make_array(charName.politician,charName.mezepheles,char
 
 tag_filter_desc[35] = "Способности, требующие нестандартного подхода (иногда) со стороны игроков или рассказчика";
 tag_filter_name[35] = "Креатив";
-tag_filter_arr[35] = scr_make_array(charName.mezepheles,charName.fisherman,charName.engineer,charName.atheist,charName.amnesiac,charName.alchemist,charName.artist,charName.gossip,charName.artist,charName.juggler);
+tag_filter_arr[35] = scr_make_array(charName.highPriestess,charName.mezepheles,charName.fisherman,charName.engineer,charName.atheist,charName.amnesiac,charName.alchemist,charName.artist,charName.gossip,charName.artist,charName.juggler);
 
 tag_filter_desc[36] = "Способности, дающие о себе знать кому-то за столом";
 tag_filter_name[36] = "Знают что вы в игре";
