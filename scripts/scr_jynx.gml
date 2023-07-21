@@ -7,4 +7,5 @@ if argument0 > argument1 {
 }
 
 jynx_marker[tmp_jynx_a, tmp_jynx_b] = 1;
-jynx_desc[tmp_jynx_a, tmp_jynx_b] = argument2;
+jynx_ru_desc[tmp_jynx_a, tmp_jynx_b] = argument2;
+jynx_eng_desc[tmp_jynx_a, tmp_jynx_b] = argument3;

@@ -123,7 +123,9 @@
       <sprite>sprites\SprGeneral</sprite>
       <sprite>sprites\SprGoblin</sprite>
       <sprite>sprites\SprGolem</sprite>
+      <sprite>sprites\SprHarpy</sprite>
       <sprite>sprites\SprHeretic</sprite>
+      <sprite>sprites\SprHighPriestess</sprite>
       <sprite>sprites\SprHuntsman</sprite>
       <sprite>sprites\SprKing</sprite>
       <sprite>sprites\SprKnight</sprite>
@@ -133,7 +135,6 @@
       <sprite>sprites\SprLleech</sprite>
       <sprite>sprites\SprLycanthrope</sprite>
       <sprite>sprites\SprMagician</sprite>
-      <sprite>sprites\SprHighPriestess</sprite>
       <sprite>sprites\SprMarionette</sprite>
       <sprite>sprites\SprMezepheles</sprite>
       <sprite>sprites\SprNightwatchman</sprite>

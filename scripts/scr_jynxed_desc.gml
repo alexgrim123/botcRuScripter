@@ -8,4 +8,17 @@ if argument0 > argument1 {
     tmp_jynx_b = argument1;
 }
 
-return jynx_desc[tmp_jynx_a,tmp_jynx_b];
+res = "";
+
+switch (curr_lang) {
+    
+    case language.russian:
+        res = jynx_ru_desc[tmp_jynx_a,tmp_jynx_b];
+    break;
+    
+    case language.english:
+        res = jynx_eng_desc[tmp_jynx_a,tmp_jynx_b];
+    break;
+    
+}
+return res;

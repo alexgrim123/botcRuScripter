@@ -16,11 +16,11 @@ for(amy_group_itr = 0; amy_group_itr <= charGroup.demon; amy_group_itr++) {
             if amy_order[tmp_amy_char] < fill_amy_value {
                 fill_chosen_index = amy_char_itr;
                 fill_amy_value = amy_order[tmp_amy_char];
-                fill_string_length = string_length(charDesc[tmp_amy_char]);
-            } else if (amy_order[tmp_amy_char] = fill_amy_value && string_length(charDesc[tmp_amy_char]) < fill_string_length) {
+                fill_string_length = string_length(charDesc[tmp_amy_char,curr_lang]);
+            } else if (amy_order[tmp_amy_char] = fill_amy_value && string_length(charDesc[tmp_amy_char,curr_lang]) < fill_string_length) {
                 fill_chosen_index = amy_char_itr;
                 fill_amy_value = amy_order[tmp_amy_char];
-                fill_string_length = string_length(charDesc[tmp_amy_char]);                
+                fill_string_length = string_length(charDesc[tmp_amy_char,curr_lang]);
             }
         }
         if fill_chosen_index != -1 {

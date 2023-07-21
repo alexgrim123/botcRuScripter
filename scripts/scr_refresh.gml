@@ -17,7 +17,7 @@ switch(list_mode) {
                     check_tag = 1;
                 }
                 if (filter_set[charSet[r]] && check_tag && group[r] = g) {
-                    filter_name[tmp_size] = string_lower(charTitle[r]);
+                    filter_name[tmp_size] = string_lower(charTitle[r,curr_lang]);
                     tmp_size++;
                 }
             }
@@ -26,7 +26,7 @@ switch(list_mode) {
             
             for(r=0; r<tmp_size; r++) {
                 for(l=0; l<charName.lastChar; l++) {
-                    if filter_name[r] = string_lower(charTitle[l]) && group[l] = g && filter_set[charSet[l]] {
+                    if filter_name[r] = string_lower(charTitle[l,curr_lang]) && group[l] = g && filter_set[charSet[l]] {
                         filter_list[list_size] = l;
                         list_pick[list_size] = 0;
                         if scr_char_picked(l)
@@ -44,7 +44,7 @@ switch(list_mode) {
         clear_mass[0] = "";
         filter_name = clear_mass;
         for(r=1; r<travellerName.lastChar; r++){
-            filter_name[tmp_size] = string_lower(travellerTitle[r]);
+            filter_name[tmp_size] = string_lower(travellerTitle[r,curr_lang]);
             tmp_size++;
         }
     
@@ -52,7 +52,7 @@ switch(list_mode) {
         
         for(r=0; r<tmp_size; r++) {
             for(l=1; l<travellerName.lastChar; l++) {
-                if filter_name[r] = string_lower(travellerTitle[l]) {
+                if filter_name[r] = string_lower(travellerTitle[l,curr_lang]) {
                     filter_list[list_size] = l;
                     list_pick[list_size] = 0;
                     if traveller_pick[l]
@@ -69,7 +69,7 @@ switch(list_mode) {
         clear_mass[0] = "";
         filter_name = clear_mass;
         for(r=0; r<fabledName.lastChar; r++){
-            filter_name[tmp_size] = string_lower(fabledTitle[r]);
+            filter_name[tmp_size] = string_lower(fabledTitle[r,curr_lang]);
             tmp_size++;
         }
     
@@ -77,7 +77,7 @@ switch(list_mode) {
         
         for(r=0; r<tmp_size; r++) {
             for(l=0; l<fabledName.lastChar; l++) {
-                if filter_name[r] = string_lower(fabledTitle[l]) {
+                if filter_name[r] = string_lower(fabledTitle[l,curr_lang]) {
                     filter_list[list_size] = l;
                     list_pick[list_size] = 0;
                     if fabled_pick[l]
