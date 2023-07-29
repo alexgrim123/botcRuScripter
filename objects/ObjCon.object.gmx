@@ -266,6 +266,7 @@ enum fabledName {
     stormcatcher,
     toymaker,
     gardener,
+    ferryman,
     bootlegger,
     lastChar
 }
@@ -2001,6 +2002,13 @@ fabledTitle[fabledName.fibbin,language.russian] = "Трепач"
 fabledDesc[fabledName.fibbin,language.russian] = "Один раз за игру, 1 Добрый игрок может получить неверную информацию."
 fabledTitle[fabledName.fibbin,language.english] = "Fibbin"
 fabledDesc[fabledName.fibbin,language.english] = "Once per game, 1 good player might get incorrect information."
+
+fabledCode[fabledName.ferryman] = "ferryman"
+fabledIcon[fabledName.ferryman] = SprFerryman
+fabledTitle[fabledName.ferryman,language.russian] = "Паромщик"
+fabledDesc[fabledName.ferryman,language.russian] = "На последний день, все мёртвые игроки возвращают себе жетон голоса."
+fabledTitle[fabledName.ferryman,language.english] = "Ferryman"
+fabledDesc[fabledName.ferryman,language.english] = "On the final day, all dead players regain their vote token."
 
 fabledCode[fabledName.fiddler] = "fiddler"
 fabledIcon[fabledName.fiddler] = SprFiddler
