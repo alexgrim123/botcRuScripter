@@ -241,6 +241,7 @@ enum charName {
     steward,
     highPriestess,
     harpy,
+    plagueDoctor,
     widow,
     lastChar
 };
@@ -1298,7 +1299,7 @@ amy_order[charName.snakecharmer] = amyOrder.everyNight;
 charCode[charName.sweetheart] = "sweetheart"
 charIcon[charName.sweetheart] = SprSweetheart
 charTitle[charName.sweetheart,language.russian] = "Возлюбленная"
-charDesc[charName.sweetheart,language.russian] = "Если вы умираете, один из игроков пьянеет."
+charDesc[charName.sweetheart,language.russian] = "Когда вы умираете, один из игроков пьянеет."
 charTitle[charName.sweetheart,language.english] = "Sweetheart";
 charDesc[charName.sweetheart,language.english] = "When you die, 1 player is drunk from now on.";
 charSet[charName.sweetheart] = setName.sectsAndViolets;
@@ -1939,6 +1940,18 @@ group[charName.harpy] = charGroup.minion;
 f_night[charName.harpy] = -1;
 o_night[charName.harpy] = -1;
 amy_order[charName.harpy] = amyOrder.everyNight
+
+charCode[charName.plagueDoctor] = "plague_doctor"
+charIcon[charName.plagueDoctor] = SprPlagueDoctor
+charTitle[charName.plagueDoctor,language.russian] = "Чумной доктор"
+charDesc[charName.plagueDoctor,language.russian] = "Когда вы умираете, Рассказчик получает способность Приспешника, которого нет в игре."
+charTitle[charName.plagueDoctor,language.english] = "Plague Doctor";
+charDesc[charName.plagueDoctor,language.english] = "If you die, the Storyteller gains a not-in-play Minion ability.";
+charSet[charName.plagueDoctor] = setName.experimental;
+group[charName.plagueDoctor] = charGroup.outsider;
+f_night[charName.plagueDoctor] = -1;
+o_night[charName.plagueDoctor] = -1;
+amy_order[charName.plagueDoctor] = amyOrder.triggerOncePerGame;
 </string>
           </argument>
         </arguments>
@@ -2553,7 +2566,7 @@ tag_filter_desc[16,language.russian] = "Персонажи, которые мо�
 tag_filter_name[16,language.russian] = "Решение рассказчика";
 tag_filter_desc[16,language.english] = "Characters, that might work, or might not. Also characters, that rely on Storyteller's decisions and ideas";
 tag_filter_name[16,language.english] = "Storyteller's Judge";
-tag_filter_arr[16] = scr_make_array(charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy);
+tag_filter_arr[16] = scr_make_array(charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy, charName.plagueDoctor);
 
 tag_filter_desc[17,language.russian] = "Используют механику отравления (отравление чаще связано со Злодеями)";
 tag_filter_name[17,language.russian] = "Отравление";
@@ -2565,7 +2578,7 @@ tag_filter_desc[18,language.russian] = "Срабатывают из-за сво�
 tag_filter_name[18,language.russian] = "Триггер на смерть";
 tag_filter_desc[18,language.english] = "Works by own death or other's death";
 tag_filter_name[18,language.english] = "Death Trigger";
-tag_filter_arr[18] = scr_make_array(charName.pixie,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper);
+tag_filter_arr[18] = scr_make_array(charName.pixie,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper,charName.plagueDoctor);
 
 tag_filter_desc[19,language.russian] = "Эти персонажи делают так, что они или кто-то ещё узнают точного персонажа какого-то игрока (или одного из игроков)";
 tag_filter_name[19,language.russian] = "Узнаёт персонажа";
@@ -2703,7 +2716,7 @@ tag_filter_desc[41,language.russian] = "Персонажи, получающие
 tag_filter_name[41,language.russian] = "Способности";
 tag_filter_desc[41,language.english] = "Characters, that gain abilities, give abilities, modify abilities or remove abilities. Does not include droisoning";
 tag_filter_name[41,language.english] = "Abilities";
-tag_filter_arr[41] = scr_make_array(charName.preacher,charName.pixie,charName.cannibal,charName.amnesiac,charName.alchemist,charName.vortox,charName.vigormortis,charName.philosopher);
+tag_filter_arr[41] = scr_make_array(charName.preacher,charName.pixie,charName.cannibal,charName.amnesiac,charName.alchemist,charName.vortox,charName.vigormortis,charName.philosopher,charName.plagueDoctor);
 
 tag_filter_desc[43,language.russian] = "Персонажи, которые могут повлиять на сетап игры (включая счёт посторонних)";
 tag_filter_name[43,language.russian] = "Меняет сетап";
@@ -2824,6 +2837,15 @@ scr_jynx(charName.vizier,charName.alchemist,"Если у Алхимика спо
 scr_jynx(charName.vizier,charName.magician,"Только 1 из персонажей может быть в игре, Злодеи в начале знают какой и у какого игрока","Only 1 jinxed character can be in play. Evil players start knowing which player and character it is");
 scr_jynx(charName.vizier,charName.fearmonger,"Визирь просыпается со Страшилой и знает его выбор. Визирь не может казнить выбранного игрока","The Vizier wakes with the Fearmonger, learns who they choose and cannot choose to execute that player");
 scr_jynx(charName.vizier,charName.lilmonsta,"Визирь может умереть от казни, если он нянчит Монстра Джуниора","The Vizier can die by execution if they are babysitting Lil' Monsta");
+
+scr_jynx(charName.plagueDoctor,charName.baron,"Если Рассказчик получает способность Барона, до 2 игроков становятся Посторонними, которых нет в игре.","If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders.");
+scr_jynx(charName.plagueDoctor,charName.boomdandy,"Если Чумного доктора казнят и Рассказчик получает способность Подрывника, вместо этого способность сразу же срабатывает.","If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately.");
+scr_jynx(charName.plagueDoctor,charName.eviltwin,"Рассказчик не может получить способность Злого близнеца, если Чумной доктор умрёт.","The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies.");
+scr_jynx(charName.plagueDoctor,charName.fearmonger,"Если Чумной доктор умирает, живой Приспешник получает способность Страшилы и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this.");
+scr_jynx(charName.plagueDoctor,charName.goblin,"Если Чумной доктор умирает, живой Приспешник получает способность Гоблина и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this.");
+scr_jynx(charName.plagueDoctor,charName.marionette,"Если у Демона есть живой сосед Горожанин или Посторонний и в игре не добавлялся Злой игрок, когда Чумной доктор умирает этот сосед становится Марионеткой.","If the Demon has a neighbour who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen.");
+scr_jynx(charName.plagueDoctor,charName.scarletwoman,"Если Чумной доктор умирает, живой Приспешник получает способность Алой Дамы и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this.");
+scr_jynx(charName.plagueDoctor,charName.spy,"Если Чумной доктор умирает, живой Приспешник получает способность Шпиона и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this.");
 </string>
           </argument>
         </arguments>
@@ -3204,7 +3226,8 @@ if !button_lock {
             ini_open("data.ini")
             ini_write_real("options","language",curr_lang);
             ini_close();
-        }
+        }        
+        scr_refresh();
     }
     if keyboard_check_pressed(vk_f5) {
         background_enable = !background_enable;
@@ -3227,7 +3250,8 @@ if !button_lock {
         if keyboard_check_pressed(vk_anykey)
             help_box_open = 0;
     } else if keyboard_check_pressed(vk_f1) {
-        help_box_open = 1;
+        if !filter_box_open
+            help_box_open = 1;
     }
     
     if filter_box_open {

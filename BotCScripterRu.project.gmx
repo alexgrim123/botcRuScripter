@@ -151,6 +151,7 @@
       <sprite>sprites\SprSteward</sprite>
       <sprite>sprites\SprVizier</sprite>
       <sprite>sprites\SprWidow</sprite>
+      <sprite>sprites\SprPlagueDoctor</sprite>
     </sprites>
     <sprites name="Fabled">
       <sprite>sprites\SprAngel</sprite>
