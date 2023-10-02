@@ -242,6 +242,7 @@ enum charName {
     highPriestess,
     harpy,
     plagueDoctor,
+    shugenja,
     widow,
     lastChar
 };
@@ -1952,6 +1953,18 @@ group[charName.plagueDoctor] = charGroup.outsider;
 f_night[charName.plagueDoctor] = -1;
 o_night[charName.plagueDoctor] = -1;
 amy_order[charName.plagueDoctor] = amyOrder.triggerOncePerGame;
+
+charCode[charName.shugenja] = "knight"
+charIcon[charName.shugenja] = SprShugenja
+charTitle[charName.shugenja,language.russian] = "Cюгэндзя"
+charDesc[charName.shugenja,language.russian] = "В начале вы знаете, с какой стороны ближайший к вам Злодей, по часовой или против часовой. Если одинаково, информация даётся по решению ведущего."
+charTitle[charName.shugenja,language.english] = "Shugenja";
+charDesc[charName.shugenja,language.english] = "You start knowing if your closest evil player is clockwise or anti-clockwise. If equidistant, this info is arbitrary.";
+charSet[charName.shugenja] = setName.experimental;
+group[charName.shugenja] = charGroup.townsfolk;
+f_night[charName.shugenja] = 44;
+o_night[charName.shugenja] = 0;
+amy_order[charName.shugenja] = amyOrder.firstNight
 </string>
           </argument>
         </arguments>
@@ -2294,6 +2307,7 @@ first_night_order_array = scr_make_array(
     charName.knight,
     charName.noble,
     charName.balloonist,
+    charName.shugenja,
     charName.bountyhunter,
     charName.nightwatchman,
     charName.cultleader,
@@ -2395,7 +2409,7 @@ other_night_order_array_length = array_length_1d(other_night_order_array)
 
 f_night_demon_info = 12;
 f_night_minion_info = 9;
-f_night_dawn_order = 60;
+f_night_dawn_order = 61;
 o_night_dawn_order = 79;
 
 for(i=0; i&lt;charName.lastChar; i++) {
@@ -2476,19 +2490,19 @@ tag_filter_desc[2,language.russian] = "Персонажи зависящие о�
 tag_filter_name[2,language.russian] = "Позиционирование";
 tag_filter_desc[2,language.english] = "Characters, that depend on/tied with player position in circle";
 tag_filter_name[2,language.english] = "Positioning";
-tag_filter_arr[2] = scr_make_array(charName.marionette,charName.acrobat,charName.nodashii,charName.clockmaker,charName.tealady,charName.chef,charName.empath);
+tag_filter_arr[2] = scr_make_array(charName.marionette,charName.acrobat,charName.nodashii,charName.clockmaker,charName.tealady,charName.chef,charName.empath,charName.shugenja);
 
 tag_filter_desc[42,language.russian] = "Персонажи, получающие информацию в первую ночь, или дающие другим информацию в первую ночь";
 tag_filter_name[42,language.russian] = "Инфо в первую ночь";
 tag_filter_desc[42,language.english] = "Characters, that gain information first night or give others information on the first night";
 tag_filter_name[42,language.english] = "First Night Info";
-tag_filter_arr[42] = scr_make_array(charName.steward,charName.knight,charName.snitch,charName.pixie,charName.noble,charName.bountyhunter,charName.clockmaker,charName.grandmother,charName.godfather,charName.chef, charName.investigator, charName.librarian, charName.washerwoman);
+tag_filter_arr[42] = scr_make_array(charName.steward,charName.knight,charName.snitch,charName.pixie,charName.noble,charName.bountyhunter,charName.clockmaker,charName.grandmother,charName.godfather,charName.chef, charName.investigator, charName.librarian, charName.washerwoman,charName.shugenja);
 
 tag_filter_desc[3,language.russian] = "Всё, что может помочь вычислить злодеев";
 tag_filter_name[3,language.russian] = "Скан Злодеев";
 tag_filter_desc[3,language.english] = "Everything, that helps finding out Evil";
 tag_filter_name[3,language.english] = "Evil Scan";
-tag_filter_arr[3] = scr_make_array(charName.poppygrower,charName.noble,charName.magician,charName.lycanthrope,charName.king,charName.bountyhunter,charName.seamstress,charName.oracle,charName.klutz,charName.juggler,charName.dreamer,charName.clockmaker,charName.tealady,charName.moonchild,charName.chef,charName.empath);
+tag_filter_arr[3] = scr_make_array(charName.poppygrower,charName.noble,charName.magician,charName.lycanthrope,charName.king,charName.bountyhunter,charName.seamstress,charName.oracle,charName.klutz,charName.juggler,charName.dreamer,charName.clockmaker,charName.tealady,charName.moonchild,charName.chef,charName.empath,charName.shugenja);
 
 tag_filter_desc[4,language.russian] = "Всё, что может помочь определить кто приспешник, какие приспешники в игре и т. д.";
 tag_filter_name[4,language.russian] = "Скан Приспешников";
@@ -2566,7 +2580,7 @@ tag_filter_desc[16,language.russian] = "Персонажи, которые мо�
 tag_filter_name[16,language.russian] = "Решение рассказчика";
 tag_filter_desc[16,language.english] = "Characters, that might work, or might not. Also characters, that rely on Storyteller's decisions and ideas";
 tag_filter_name[16,language.english] = "Storyteller's Judge";
-tag_filter_arr[16] = scr_make_array(charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy, charName.plagueDoctor);
+tag_filter_arr[16] = scr_make_array(charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy, charName.plagueDoctor, charName.shugenja);
 
 tag_filter_desc[17,language.russian] = "Используют механику отравления (отравление чаще связано со Злодеями)";
 tag_filter_name[17,language.russian] = "Отравление";
