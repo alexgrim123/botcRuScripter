@@ -40,13 +40,11 @@ if file_exists("data.ini") {
     save_slot = ini_read_real("data","save",save_slot);
     curr_lang = ini_read_real("options","language",curr_lang);
     background_enable = ini_read_real("options","background",background_enable);
-    pic_mode = ini_read_real("options","pics",pic_mode);
 } else {
     ini_open("data.ini")
     ini_write_real("data","save",save_slot);
     ini_write_real("options","language",curr_lang);
     ini_write_real("options","background",background_enable);
-    ini_write_real("options","pics",pic_mode);
 }
 ini_close();
 
@@ -65,6 +63,10 @@ invert_other_night = 0; // 0 - not inverted, 1 - invert for print
 fable_offset = -500;
 arrow_button_cd = 0;
 pic_scale = 1.8;
+base_random_amount[0] = 13;
+base_random_amount[1] = 4;
+base_random_amount[2] = 4;
+base_random_amount[3] = 4;
 
 // filter list and selection
 highlight_list = -1;
@@ -244,6 +246,10 @@ enum charName {
     plagueDoctor,
     shugenja,
     ojo,
+    hatter,
+    kazali,
+    village_idiot,
+    yaggababble,
     widow,
     lastChar
 };
@@ -400,8 +406,8 @@ json_load_button[language.english] = "LOAD JSON";
 copypaste_button[language.russian] = "%appdata%\BotCScripterRu  &lt;= сохраняется сюда#кликните, чтобы скопировать путь";
 copypaste_button[language.english] = "%appdata%\BotCScripterRu  &lt;= saved here#click to copy directory";
 
-help_full_text[language.russian] = "Открыть дополнительные фильтры: Пробел##На дополнительные фильтры можно нажимать ПКМ - это означает не включать в поиск##Чтобы получить распечатку способностей Сказок и Путников - ПКМ по ним в основных фильтрах##Чтобы собрать основные сценарии - ПКМ по их названиям в фильтрах##Если у иконки персонажа в основной области маленькая иконка в углу - у вас в сценарии будут правила Джина##Если выбирать Сказки и Путников - они будут добавлены как рекоммендованные в ночной порядок##Убрать задник: F5##Старые/новые иконки персонажей: F9##ПОМЕНЯТЬ ЯЗЫК: F2";
-help_full_text[language.english] = "Open tag filter: SPACE##Tag filters may be clicked with RMB to exclude them from searching##You can make Travellers and Fabled Sheets by clicking RMB on their filters##To make basic scripts, click RMB on basic script name filter##If there are small icons besides character icons on the main assembly screen, then these characters will have Djinn jynx##Picking Travellers and Fabled adds them to the sheet as recommended (Travellers will be added to night order too)##Remove background: F5##Swap between old/new icons of characters: F9##LANGUAGE CHANGE: F2";
+help_full_text[language.russian] = "Открыть дополнительные фильтры: Пробел##На дополнительные фильтры можно нажимать ПКМ - это означает не включать в поиск##Чтобы получить распечатку способностей Сказок и Путников - ПКМ по ним в основных фильтрах##Чтобы собрать основные сценарии - ПКМ по их названиям в фильтрах##Если у иконки персонажа в основной области маленькая иконка в углу - у вас в сценарии будут правила Джина##Если выбирать Сказки и Путников - они будут добавлены как рекоммендованные в ночной порядок##ПКМ по экспериментальной категории - абсолютно случайный сценарий##Убрать задник: F5##ПОМЕНЯТЬ ЯЗЫК: F2";
+help_full_text[language.english] = "Open tag filter: SPACE##Tag filters may be clicked with RMB to exclude them from searching##You can make Travellers and Fabled Sheets by clicking RMB on their filters##To make basic scripts, click RMB on basic script name filter##If there are small icons besides character icons on the main assembly screen, then these characters will have Djinn jynx##Picking Travellers and Fabled adds them to the sheet as recommended (Travellers will be added to night order too)##RMB click on experimental category to generate random script##Remove background: F5##LANGUAGE CHANGE: F2";
 
 tag_filter_mode_title[language.russian] = "Режим: хотя бы один";
 tag_filter_mode_title[language.english] = "Mode: at least one tag";
@@ -420,6 +426,9 @@ dawn_title[language.english] = "Dawn";
 dawn_title[language.russian] = "Рассвет";
 dusk_title[language.english] = "Dusk";
 dusk_title[language.russian] = "Закат";
+
+random_title[language.english] = "Embrace the Chaos";
+random_title[language.russian] = "Восславим Хаос";
 
 recommended_travellers_title[language.russian] = "Рекомендуемые Путники:";
 recommended_travellers_title[language.english] = "Recommended Travellers:";
@@ -1264,7 +1273,7 @@ amy_order[charName.sage] = amyOrder.triggerOncePerGame;
 
 charCode[charName.savant] = "savant"
 charIcon[charName.savant] = SprSavant
-charTitle[charName.savant,language.russian] = "Учённый"
+charTitle[charName.savant,language.russian] = "Учёный"
 charDesc[charName.savant,language.russian] = "Каждый день вы можете посетить Рассказчика, чтобы узнать 2 факта. Один правдивый, другой ложный."
 charTitle[charName.savant,language.english] = "Savant";
 charDesc[charName.savant,language.english] = "Each day, you may visit the Storyteller to learn 2 things in private: 1 is true &amp; 1 is false.";
@@ -1955,7 +1964,7 @@ f_night[charName.plagueDoctor] = -1;
 o_night[charName.plagueDoctor] = -1;
 amy_order[charName.plagueDoctor] = amyOrder.triggerOncePerGame;
 
-charCode[charName.shugenja] = "knight"
+charCode[charName.shugenja] = "shugenja"
 charIcon[charName.shugenja] = SprShugenja
 charTitle[charName.shugenja,language.russian] = "Cюгэндзя"
 charDesc[charName.shugenja,language.russian] = "В начале вы знаете, с какой стороны ближайший к вам Злодей, по часовой или против часовой. Если одинаково, информация даётся по решению ведущего."
@@ -1967,7 +1976,7 @@ f_night[charName.shugenja] = 44;
 o_night[charName.shugenja] = 0;
 amy_order[charName.shugenja] = amyOrder.firstNight
 
-charCode[charName.ojo] = "Ojo"
+charCode[charName.ojo] = "ojo"
 charIcon[charName.ojo] = SprOjo
 charTitle[charName.ojo,language.russian] = "Оджо"
 charDesc[charName.ojo,language.russian] = "Каждую ночь* вы выбираете персонажа: он умирает. Если такого персонажа нет в игре, Рассказчик выбирает, кто умрёт."
@@ -1978,6 +1987,54 @@ group[charName.ojo] = charGroup.demon;
 f_night[charName.ojo] = 0;
 o_night[charName.ojo] = 32;
 amy_order[charName.ojo] = amyOrder.everyNightAsterisk;
+
+charCode[charName.hatter] = "hatter"
+charIcon[charName.hatter] = SprHatter
+charTitle[charName.hatter,language.russian] = "Шляпник"
+charDesc[charName.hatter,language.russian] = "Если сегодня днём или ночью вы умерли, Приспешники и Демоны могут выбрать себе новых персонажей Приспешников и Демонов, чтобы стать ими."
+charTitle[charName.hatter,language.english] = "Hatter";
+charDesc[charName.hatter,language.english] = "If you died today or tonight, the Minion &amp; Demon players may choose new Minion &amp; Demon characters to be.";
+charSet[charName.hatter] = setName.experimental;
+group[charName.hatter] = charGroup.outsider;
+f_night[charName.hatter] = 0;
+o_night[charName.hatter] = 32;
+amy_order[charName.hatter] = amyOrder.triggerOncePerGame;
+
+charCode[charName.kazali] = "kazali"
+charIcon[charName.kazali] = SprKazali
+charTitle[charName.kazali,language.russian] = "Казали"
+charDesc[charName.kazali,language.russian] = "Каждую ночь*, вы выбираете игрока: он умирает. [Вы выбираете какие игроки какими приспешниками становятся. От -? до +? Посторонних]"
+charTitle[charName.kazali,language.english] = "Kazali";
+charDesc[charName.kazali,language.english] = "Each night*, choose a player: they die. [You choose which players are which Minions. -? to +? Outsiders]";
+charSet[charName.kazali] = setName.experimental;
+group[charName.kazali] = charGroup.demon;
+f_night[charName.kazali] = 0;
+o_night[charName.kazali] = 32;
+amy_order[charName.kazali] = amyOrder.everyNightAsterisk;
+
+charCode[charName.village_idiot] = "village_idiot"
+charIcon[charName.village_idiot] = SprVillageIdiot
+charTitle[charName.village_idiot,language.russian] = "Деревенский Дурачок"
+charDesc[charName.village_idiot,language.russian] = "Каждую ночь, вы выбираете игрока: вы узнаёте на какой стороне он играет. [От +0 до +2 Деревенских Дурачков. Один из них пьян]"
+charTitle[charName.village_idiot,language.english] = "Village Idiot";
+charDesc[charName.village_idiot,language.english] = "Each night, choose a player: you learn their alignment. [+0 to +2 Village Idiots. 1 of the extras is drunk]";
+charSet[charName.village_idiot] = setName.experimental;
+group[charName.village_idiot] = charGroup.townsfolk;
+f_night[charName.village_idiot] = 0;
+o_night[charName.village_idiot] = 32;
+amy_order[charName.village_idiot] = amyOrder.everyNight;
+
+charCode[charName.yaggababble] = "yaggababble"
+charIcon[charName.yaggababble] = SprYaggababble
+charTitle[charName.yaggababble,language.russian] = "Яга Болтунья"
+charDesc[charName.yaggababble,language.russian] = "В начале вы узнаёте секретную фразу. Каждый раз, когда вы днём говорите эту фразу публично, ночью может умереть игрок."
+charTitle[charName.yaggababble,language.english] = "Yaggababble";
+charDesc[charName.yaggababble,language.english] = "You start knowing a secret phrase. For each time you said it publicly today, a player might die.";
+charSet[charName.yaggababble] = setName.experimental;
+group[charName.yaggababble] = charGroup.demon;
+f_night[charName.yaggababble] = 0;
+o_night[charName.yaggababble] = 32;
+amy_order[charName.yaggababble] = amyOrder.firstAndEveryNight;
 </string>
           </argument>
         </arguments>
@@ -2274,8 +2331,10 @@ first_night_order_array = scr_make_array(
     -travellerName.thief,
     -travellerName.bureaucrat,
     charName.philosopher,
+    charName.kazali,
     charName.alchemist,
     charName.poppygrower,
+    charName.yaggababble,
     charName.magician,
     -999,
     charName.snitch,
@@ -2321,6 +2380,7 @@ first_night_order_array = scr_make_array(
     charName.noble,
     charName.balloonist,
     charName.shugenja,
+    charName.village_idiot,
     charName.bountyhunter,
     charName.nightwatchman,
     charName.cultleader,
@@ -2379,10 +2439,13 @@ other_night_order_array = scr_make_array(
     charName.alhadikhia,
     charName.lleech,
     charName.lilmonsta,
+    charName.yaggababble,
+    charName.kazali,
     charName.assassin,
     charName.godfather,
     charName.gossip,
     charName.acrobat,
+    charName.hatter,
     charName.barber,
     charName.sweetheart,
     charName.sage,
@@ -2406,6 +2469,7 @@ other_night_order_array = scr_make_array(
     charName.seamstress,
     charName.juggler,
     charName.balloonist,
+    charName.village_idiot,
     charName.king,
     charName.bountyhunter,
     charName.nightwatchman,
@@ -2421,10 +2485,10 @@ other_night_order_array = scr_make_array(
 )
 other_night_order_array_length = array_length_1d(other_night_order_array)
 
-f_night_demon_info = 12;
-f_night_minion_info = 9;
-f_night_dawn_order = 61;
-o_night_dawn_order = 80;
+f_night_demon_info = 14;
+f_night_minion_info = 11;
+f_night_dawn_order = 64;
+o_night_dawn_order = 84;
 
 for(i=0; i&lt;charName.lastChar; i++) {
     for(j=1;j&lt;first_night_order_array_length;j++) {
@@ -2492,7 +2556,7 @@ tag_filter_desc[0,language.russian] = "Меняют кол-во посторон
 tag_filter_name[0,language.russian] = "Счёт Посторонних";
 tag_filter_desc[0,language.english] = "Changes amount of Outsiders on game setup";
 tag_filter_name[0,language.english] = "Outsider Count";
-tag_filter_arr[0] = scr_make_array(charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron);
+tag_filter_arr[0] = scr_make_array(charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron,charName.kazali);
 
 tag_filter_desc[1,language.russian] = "Всё, что меняет голосование, силу голоса, триггерится за счёт голосов";
 tag_filter_name[1,language.russian] = "Голосование";
@@ -2510,13 +2574,13 @@ tag_filter_desc[42,language.russian] = "Персонажи, получающие
 tag_filter_name[42,language.russian] = "Инфо в первую ночь";
 tag_filter_desc[42,language.english] = "Characters, that gain information first night or give others information on the first night";
 tag_filter_name[42,language.english] = "First Night Info";
-tag_filter_arr[42] = scr_make_array(charName.steward,charName.knight,charName.snitch,charName.pixie,charName.noble,charName.bountyhunter,charName.clockmaker,charName.grandmother,charName.godfather,charName.chef, charName.investigator, charName.librarian, charName.washerwoman,charName.shugenja);
+tag_filter_arr[42] = scr_make_array(charName.steward,charName.knight,charName.snitch,charName.pixie,charName.noble,charName.bountyhunter,charName.clockmaker,charName.grandmother,charName.godfather,charName.chef,charName.investigator,charName.librarian,charName.washerwoman,charName.shugenja);
 
 tag_filter_desc[3,language.russian] = "Всё, что может помочь вычислить злодеев";
 tag_filter_name[3,language.russian] = "Скан Злодеев";
 tag_filter_desc[3,language.english] = "Everything, that helps finding out Evil";
 tag_filter_name[3,language.english] = "Evil Scan";
-tag_filter_arr[3] = scr_make_array(charName.poppygrower,charName.noble,charName.magician,charName.lycanthrope,charName.king,charName.bountyhunter,charName.seamstress,charName.oracle,charName.klutz,charName.juggler,charName.dreamer,charName.clockmaker,charName.tealady,charName.moonchild,charName.chef,charName.empath,charName.shugenja);
+tag_filter_arr[3] = scr_make_array(charName.poppygrower,charName.village_idiot,charName.noble,charName.magician,charName.lycanthrope,charName.king,charName.bountyhunter,charName.seamstress,charName.oracle,charName.klutz,charName.juggler,charName.dreamer,charName.clockmaker,charName.tealady,charName.moonchild,charName.chef,charName.empath,charName.shugenja);
 
 tag_filter_desc[4,language.russian] = "Всё, что может помочь определить кто приспешник, какие приспешники в игре и т. д.";
 tag_filter_name[4,language.russian] = "Скан Приспешников";
@@ -2534,7 +2598,7 @@ tag_filter_desc[6,language.russian] = "Использует механику о�
 tag_filter_name[6,language.russian] = "Пьянство";
 tag_filter_desc[6,language.english] = "Using the drunk mechanic (generally connected to Good characters)";
 tag_filter_name[6,language.english] = "Drunk";
-tag_filter_arr[6] = scr_make_array(charName.puzzlemaster,charName.acrobat,charName.sweetheart,charName.snakecharmer,charName.philosopher,charName.mathematician,charName.sailor,charName.minstrel,charName.innkeeper,charName.goon,charName.drunk,charName.courtier);
+tag_filter_arr[6] = scr_make_array(charName.puzzlemaster,charName.village_idiot,charName.acrobat,charName.sweetheart,charName.snakecharmer,charName.philosopher,charName.mathematician,charName.sailor,charName.minstrel,charName.innkeeper,charName.goon,charName.drunk,charName.courtier);
 
 tag_filter_desc[7,language.russian] = "Персонажи, которые думают, что они другие персонажи, заставляют других думать что-то или механики около этого";
 tag_filter_name[7,language.russian] = "Думает что";
@@ -2546,7 +2610,7 @@ tag_filter_desc[8,language.russian] = "Персонажи, просыпающи�
 tag_filter_name[8,language.russian] = "Каждую ночь";
 tag_filter_desc[8,language.english] = "Characters, who wake up every night";
 tag_filter_name[8,language.english] = "Every night";
-tag_filter_arr[8] = scr_make_array(charName.harpy,charName.highPriestess,charName.preacher,charName.nightwatchman,charName.cultleader,charName.lleech,charName.lilmonsta,charName.king,charName.huntsman,charName.general,charName.fearmonger,charName.engineer,charName.bountyhunter,charName.balloonist,charName.witch,charName.snakecharmer,charName.seamstress,charName.philosopher,charName.mathematician,charName.dreamer,charName.cerenovus,charName.sailor,charName.pukka,charName.devilsadvocate,charName.chambermaid,charName.empath, charName.fortuneteller, charName.poisoner, charName.spy);
+tag_filter_arr[8] = scr_make_array(charName.harpy,charName.yaggababble,charName.kazali,charName.village_idiot,charName.highPriestess,charName.preacher,charName.nightwatchman,charName.cultleader,charName.lleech,charName.lilmonsta,charName.king,charName.huntsman,charName.general,charName.fearmonger,charName.engineer,charName.bountyhunter,charName.balloonist,charName.witch,charName.snakecharmer,charName.seamstress,charName.philosopher,charName.mathematician,charName.dreamer,charName.cerenovus,charName.sailor,charName.pukka,charName.devilsadvocate,charName.chambermaid,charName.empath, charName.fortuneteller, charName.poisoner, charName.spy);
 
 tag_filter_desc[9,language.russian] = "Персонажи, просыпающиеся каждую ночь, кроме первой";
 tag_filter_name[9,language.russian] = "Каждую ночь*";
@@ -2558,7 +2622,7 @@ tag_filter_desc[10,language.russian] = "Персонажи, которые мо�
 tag_filter_name[10,language.russian] = "Убивает сам";
 tag_filter_desc[10,language.english] = "Characters, who are capable of targeting their kills";
 tag_filter_name[10,language.english] = "Killers";
-tag_filter_arr[10] = scr_make_array(charName.ojo,charName.harpy,charName.psychopath, charName.lycanthrope,charName.lleech,charName.golem,charName.alhadikhia,charName.witch,charName.vortox,charName.vigormortis,charName.nodashii,charName.fanggu,charName.zombuul,charName.shabaloth,charName.pukka,charName.po,charName.godfather, charName.assassin,charName.imp, charName.slayer, charName.moonchild);
+tag_filter_arr[10] = scr_make_array(charName.ojo,charName.kazali,charName.harpy,charName.psychopath, charName.lycanthrope,charName.lleech,charName.golem,charName.alhadikhia,charName.witch,charName.vortox,charName.vigormortis,charName.nodashii,charName.fanggu,charName.zombuul,charName.shabaloth,charName.pukka,charName.po,charName.godfather, charName.assassin,charName.imp, charName.slayer, charName.moonchild);
 
 tag_filter_desc[11,language.russian] = "Из-за этих персонажей Демон может поменяться или игрок может стать демоном";
 tag_filter_name[11,language.russian] = "Смена демона";
@@ -2594,7 +2658,7 @@ tag_filter_desc[16,language.russian] = "Персонажи, которые мо�
 tag_filter_name[16,language.russian] = "Решение рассказчика";
 tag_filter_desc[16,language.english] = "Characters, that might work, or might not. Also characters, that rely on Storyteller's decisions and ideas";
 tag_filter_name[16,language.english] = "Storyteller's Judge";
-tag_filter_arr[16] = scr_make_array(charName.ojo,charName.legion,charName.lilmonsta,charName.pithag,charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy, charName.plagueDoctor, charName.shugenja);
+tag_filter_arr[16] = scr_make_array(charName.ojo,charName.village_idiot,charName.legion,charName.lilmonsta,charName.pithag,charName.amnesiac,charName.highPriestess,charName.general,charName.fisherman,charName.atheist,charName.tinker,charName.pacifist, charName.mayor, charName.recluse, charName.spy, charName.plagueDoctor, charName.shugenja);
 
 tag_filter_desc[17,language.russian] = "Используют механику отравления (отравление чаще связано со Злодеями)";
 tag_filter_name[17,language.russian] = "Отравление";
@@ -2606,7 +2670,7 @@ tag_filter_desc[18,language.russian] = "Срабатывают из-за сво�
 tag_filter_name[18,language.russian] = "Триггер на смерть";
 tag_filter_desc[18,language.english] = "Works by own death or other's death";
 tag_filter_name[18,language.english] = "Death Trigger";
-tag_filter_arr[18] = scr_make_array(charName.pixie,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper,charName.plagueDoctor);
+tag_filter_arr[18] = scr_make_array(charName.pixie,charName.hatter,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper,charName.plagueDoctor);
 
 tag_filter_desc[19,language.russian] = "Эти персонажи делают так, что они или кто-то ещё узнают точного персонажа какого-то игрока (или одного из игроков)";
 tag_filter_name[19,language.russian] = "Узнаёт персонажа";
@@ -2630,13 +2694,13 @@ tag_filter_desc[22,language.russian] = "Способности работающ�
 tag_filter_name[22,language.russian] = "Пассивки";
 tag_filter_desc[22,language.english] = "Abilities that just work and do not make player do anything or choose anyone";
 tag_filter_name[22,language.english] = "Passive";
-tag_filter_arr[22] = scr_make_array(charName.poppygrower,charName.magician,charName.lleech,charName.leviathan,charName.legion,charName.heretic,charName.atheist,charName.vortox,charName.mutant,charName.nodashii,charName.eviltwin,charName.zombuul,charName.tinker,charName.tealady, charName.sailor, charName.pacifist,charName.minstrel,charName.mastermind,charName.grandmother,charName.goon,charName.godfather, charName.fool, charName.scarletwoman,charName.saint,charName.mayor,charName.recluse,charName.drunk, charName.soldier, charName.spy);
+tag_filter_arr[22] = scr_make_array(charName.poppygrower,charName.yaggababble,charName.magician,charName.lleech,charName.leviathan,charName.legion,charName.heretic,charName.atheist,charName.vortox,charName.mutant,charName.nodashii,charName.eviltwin,charName.zombuul,charName.tinker,charName.tealady, charName.sailor, charName.pacifist,charName.minstrel,charName.mastermind,charName.grandmother,charName.goon,charName.godfather, charName.fool, charName.scarletwoman,charName.saint,charName.mayor,charName.recluse,charName.drunk, charName.soldier, charName.spy);
 
 tag_filter_desc[23,language.russian] = "Способности срабатывающие днём (но не касающиеся номинаций и казни)";
 tag_filter_name[23,language.russian] = "Работает днём";
 tag_filter_name[23,language.english] = "Day";
 tag_filter_desc[23,language.english] = "Abilities, that occur during the day (not connected to nominations and executions)";
-tag_filter_arr[23] = scr_make_array(charName.psychopath, charName.fisherman,charName.amnesiac,charName.savant,charName.juggler,charName.artist, charName.slayer, charName.gossip);
+tag_filter_arr[23] = scr_make_array(charName.psychopath,charName.yaggababble,charName.fisherman,charName.amnesiac,charName.savant,charName.juggler,charName.artist, charName.slayer, charName.gossip);
 
 tag_filter_desc[24,language.russian] = "Способности которые срабатывают только раз за игру (не считая те, которые срабатывают от смерти персонажа)";
 tag_filter_name[24,language.russian] = "Раз в игру";
@@ -2648,7 +2712,7 @@ tag_filter_desc[25,language.russian] = "Персонажи, которые об�
 tag_filter_name[25,language.russian] = "Публично";
 tag_filter_name[25,language.english] = "Public";
 tag_filter_desc[25,language.english] = "Characters, that make public claims or automatically outted Evil";
-tag_filter_arr[25] = scr_make_array(charName.psychopath, charName.vizier, charName.goblin,charName.damsel,charName.klutz,charName.juggler,charName.moonchild,charName.slayer,charName.gossip);
+tag_filter_arr[25] = scr_make_array(charName.psychopath,charName.yaggababble,charName.vizier, charName.goblin,charName.damsel,charName.klutz,charName.juggler,charName.moonchild,charName.slayer,charName.gossip);
 
 tag_filter_desc[26,language.russian] = "Персонажи, способные заглянуть в гримуар ведущего";
 tag_filter_name[26,language.russian] = "Видит гримуар";
@@ -2666,19 +2730,19 @@ tag_filter_desc[28,language.russian] = "Персонажи, убивающие �
 tag_filter_name[28,language.russian] = "Убивает косвенно";
 tag_filter_desc[28,language.english] = "Characters, that cause killing, but cannot target their kills";
 tag_filter_name[28,language.english] = "Indirect Killer";
-tag_filter_arr[28] = scr_make_array(charName.lilmonsta,charName.legion,charName.boomdandy,charName.pithag,charName.virgin,charName.gossip);
+tag_filter_arr[28] = scr_make_array(charName.lilmonsta,charName.yaggababble,charName.legion,charName.boomdandy,charName.pithag,charName.virgin,charName.gossip);
 
 tag_filter_desc[29,language.russian] = "Способности, определяющие персонажей Добрых игроков, помогающие найти Добрых игроков или доказать, что вы Добрый";
 tag_filter_name[29,language.russian] = "Скан Добрых";
 tag_filter_desc[29,language.english] = "Abilities, that help finding Good players, learn Good characters or prove yourself as Good";
 tag_filter_name[29,language.english] = "Good Scan";
-tag_filter_arr[29] = scr_make_array(charName.ojo,charName.godfather,charName.steward,charName.pixie,charName.noble,charName.lycanthrope,charName.king,charName.farmer,charName.cannibal,charName.balloonist,charName.seamstress,charName.oracle,charName.juggler,charName.dreamer,charName.tealady,charName.professor,charName.pacifist,charName.moonchild,charName.grandmother,charName.virgin,charName.washerwoman,charName.librarian,charName.empath);
+tag_filter_arr[29] = scr_make_array(charName.ojo,charName.village_idiot,charName.godfather,charName.steward,charName.pixie,charName.noble,charName.lycanthrope,charName.king,charName.farmer,charName.cannibal,charName.balloonist,charName.seamstress,charName.oracle,charName.juggler,charName.dreamer,charName.tealady,charName.professor,charName.pacifist,charName.moonchild,charName.grandmother,charName.virgin,charName.washerwoman,charName.librarian,charName.empath);
 
 tag_filter_desc[30,language.russian] = "Все способности, из-за которых ночью будет больше одной смерти";
 tag_filter_name[30,language.russian] = "Дополнительные смерти";
 tag_filter_desc[30,language.english] = "Abilities, that cause additional deaths at night";
 tag_filter_name[30,language.english] = "Extra Death";
-tag_filter_arr[30] = scr_make_array(charName.alhadikhia,charName.acrobat,charName.tinker,charName.shabaloth,charName.po,charName.moonchild,charName.grandmother,charName.gossip,charName.godfather, charName.gambler, charName.assassin);
+tag_filter_arr[30] = scr_make_array(charName.alhadikhia,charName.yaggababble,charName.acrobat,charName.tinker,charName.shabaloth,charName.po,charName.moonchild,charName.grandmother,charName.gossip,charName.godfather, charName.gambler, charName.assassin);
 
 tag_filter_desc[31,language.russian] = "Персонажи, получающие информацию разного рода, не связанную напрямую с тем, кто Добрый, а кто Злодей (или информация неопределённая)";
 tag_filter_name[31,language.russian] = "Всякая информация";
@@ -2702,13 +2766,13 @@ tag_filter_desc[34,language.russian] = "Способности, ведущие �
 tag_filter_name[34,language.russian] = "Смена сторон";
 tag_filter_desc[34,language.english] = "Abilities, that cause alignment change in any way";
 tag_filter_name[34,language.english] = "Alignment Change";
-tag_filter_arr[34] = scr_make_array(charName.politician,charName.mezepheles,charName.legion,charName.cultleader,charName.bountyhunter,charName.snakecharmer,charName.fanggu,charName.goon);
+tag_filter_arr[34] = scr_make_array(charName.politician,charName.kazali,charName.mezepheles,charName.legion,charName.cultleader,charName.bountyhunter,charName.snakecharmer,charName.fanggu,charName.goon);
 
 tag_filter_desc[35,language.russian] = "Способности, требующие нестандартного подхода (иногда) со стороны игроков или рассказчика";
 tag_filter_name[35,language.russian] = "Креатив";
 tag_filter_desc[35,language.english] = "Abilities, which demand creative thinking from Characters or Storyteller";
 tag_filter_name[35,language.english] = "Creative";
-tag_filter_arr[35] = scr_make_array(charName.highPriestess,charName.mezepheles,charName.fisherman,charName.engineer,charName.atheist,charName.amnesiac,charName.alchemist,charName.artist,charName.gossip,charName.artist,charName.juggler);
+tag_filter_arr[35] = scr_make_array(charName.yaggababble,charName.highPriestess,charName.mezepheles,charName.fisherman,charName.engineer,charName.atheist,charName.amnesiac,charName.alchemist,charName.artist,charName.gossip,charName.artist,charName.juggler);
 
 tag_filter_desc[36,language.russian] = "Способности, дающие о себе знать кому-то за столом";
 tag_filter_name[36,language.russian] = "Знают что вы в игре";
@@ -2726,7 +2790,7 @@ tag_filter_desc[38,language.russian] = "Всё, что может привест
 tag_filter_name[38,language.russian] = "Смена персонажей";
 tag_filter_desc[38,language.english] = "Abilities, that cause character change";
 tag_filter_name[38,language.english] = "Character Change";
-tag_filter_arr[38] = scr_make_array(charName.riot,charName.legion,charName.huntsman,charName.farmer,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.barber);
+tag_filter_arr[38] = scr_make_array(charName.hatter,charName.kazali,charName.riot,charName.legion,charName.huntsman,charName.farmer,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.barber);
 
 tag_filter_desc[39,language.russian] = "Затрагивает механику сумасшествия (вы спятили, что вы...)";
 tag_filter_name[39,language.russian] = "Сумасшествие";
@@ -2750,7 +2814,7 @@ tag_filter_desc[43,language.russian] = "Персонажи, которые мо�
 tag_filter_name[43,language.russian] = "Меняет сетап";
 tag_filter_desc[43,language.english] = "Characters, that affect game setup (including outsider count and token distribution during setup)";
 tag_filter_name[43,language.english] = "Setup Change";
-tag_filter_arr[43] = scr_make_array(charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron,charName.marionette,charName.legion,charName.riot,charName.choirboy,charName.atheist,charName.bountyhunter,charName.lilmonsta);
+tag_filter_arr[43] = scr_make_array(charName.kazali,charName.village_idiot,charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron,charName.marionette,charName.legion,charName.riot,charName.choirboy,charName.atheist,charName.bountyhunter,charName.lilmonsta);
 
 </string>
           </argument>
@@ -2794,6 +2858,7 @@ scr_jynx(charName.pithag,charName.politician,"Колдунья не может �
 scr_jynx(charName.pithag,charName.riot,"Если Колдунья создаёт Бунт, все Злодеи становятся Бунтом. Если это произошло после 3 дня, игра длится ещё 1 день","If the Pit-Hag creates Riot, all evil players become Riot. If the Pit-Hag creates Riot after day 3, the game continues for one more day")
 scr_jynx(charName.engineer,charName.legion,"Эти персонажи не могут быть в начале игры одновременно","Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion")
 scr_jynx(charName.engineer,charName.riot,"Эти персонажи не могут быть в начале игры одновременно","Riot and the Engineer cannot both be in play at the start of the game. If the Engineer creates Riot, the evil players become Riot")
+scr_jynx(charName.village_idiot,charName.pithag,"Если остались жетоны, Колдунья может создавать Деревенских Дурачков. Сразу после этого может поменяться, кто из них пьян.","If there is a spare token, the Pit-Hag can create an extra Village Idiot. If so, the drunk Village Idiot might change.");
 
 scr_jynx(charName.widow,charName.alchemist,"Алхимик не может получить способность Вдовы","The Alchemist cannot have the Widow ability");
 scr_jynx(charName.spy,charName.alchemist,"Алхимик не может получить способность Шпиона","The Alchemist cannot have the Spy ability");
@@ -2874,6 +2939,18 @@ scr_jynx(charName.plagueDoctor,charName.goblin,"Если Чумной докто
 scr_jynx(charName.plagueDoctor,charName.marionette,"Если у Демона есть живой сосед Горожанин или Посторонний и в игре не добавлялся Злой игрок, когда Чумной доктор умирает этот сосед становится Марионеткой.","If the Demon has a neighbour who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen.");
 scr_jynx(charName.plagueDoctor,charName.scarletwoman,"Если Чумной доктор умирает, живой Приспешник получает способность Алой Дамы и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this.");
 scr_jynx(charName.plagueDoctor,charName.spy,"Если Чумной доктор умирает, живой Приспешник получает способность Шпиона и узнаёт об этом. (старая способность остаётся)","If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this.");
+
+scr_jynx(charName.hatter,charName.legion,"Если в игре Легион, у Шляпника нет способности. Если Злой игрок после смерти Шляпника выбрал Легион, все Злые игроки становятся легионом.","If Legion is in play, Hatter has no ability. If an evil player chooses Legion after Hatter's death, all evil players become Legion.");
+scr_jynx(charName.hatter,charName.leviathan,"Если Шляпник умер на 5 день или после него, Демон не может выбрать Левиафана.","If the Hatter dies on or after day 5, the Demon cannot choose Leviathan.");
+scr_jynx(charName.hatter,charName.lilmonsta,"Если Демон выбрал Монстра Джуниора, он также выбирает каким Приспешником стать и держит Монстра Джуниора этой ночью.","If a Demon chooses Lil' Monsta, they also choose a Minion to become and babysit Lil' Monsta tonight.");
+scr_jynx(charName.hatter,charName.riot,"Если Бунт выбирает другого Демона, создаётся нормальная злая команда. Если Демон выбирает Бунт, приспешники тоже становятся Бунтом.","If Riot chooses a different Demon, a normal evil team is created. If the Demon chooses Riot, Minions become Riot too.");
+
+scr_jynx(charName.kazali,charName.bountyhunter,"Злой Горожанин создаётся только если Охотник за Головами остался после выбора Казали.","An evil Townsfolk is only created if the Bounty Hunter is still in play after the Kazali acts.");
+scr_jynx(charName.kazali,charName.choirboy,"Казали не может выбрать Короля в команду, если в игре есть Мальчик Хорист.","The Kazali can not choose the King to become a Minion if a Choirboy is in play.");
+scr_jynx(charName.kazali,charName.goon,"Если Казали выбирает Наёмника в команду, Рассказчик определяет оставшихся Приспешников сам.","If the Kazali chooses the Goon to become a Minion, remaining Minions choices are decided by the Storyteller.");
+scr_jynx(charName.kazali,charName.huntsman,"Если Казали выбирает Мадам в команду и в игре есть Охотник, Добрый игрок становится Мадам.","If the Kazali chooses the Damsel to become a Minion, and a Huntsman is in play, a good player becomes the Damsel.");
+scr_jynx(charName.kazali,charName.marionette,"Если Казали выбрал создать Марионетку, то он обязан выбрать соседнего игрока для неё.","If the Kazali chooses to create a Marionette, they must choose one of their neighbors.");
+scr_jynx(charName.yaggababble,charName.exorcist,"Если Экзорцист выбрал Ягу Болтунью, её способность никого не убивает этой ночью.","If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight.");
 </string>
           </argument>
         </arguments>
@@ -3163,6 +3240,15 @@ if (!filter_box_open &amp;&amp; !help_box_open) {
                     if charSet[j] = i
                         scr_pick_char(j);
                 }
+            } else if mouse_check_button_pressed(mb_right) {
+                // randomize
+                scr_remove_all();
+                script_title = random_title[curr_lang];
+                for(j=0; j&lt;4; j++) {
+                    for(k=0; k&lt;base_random_amount[j]; k++) {
+                        scr_pick_random_char(j);
+                    }
+                }
             }
         }
     
@@ -3263,14 +3349,6 @@ if !button_lock {
         if file_exists("data.ini") {
             ini_open("data.ini")
             ini_write_real("options","background",background_enable);
-            ini_close();
-        }
-    }
-    if keyboard_check_pressed(vk_f9) {
-        pic_mode = !pic_mode;
-        if file_exists("data.ini") {
-            ini_open("data.ini")
-            ini_write_real("options","pics",pic_mode);
             ini_close();
         }
     }
@@ -3529,8 +3607,12 @@ if draw_mode = 1 {
             }
             pointer_y+=100;
             for(j=0; j&lt;pick_group_amount[i]; j++) {
-                draw_sprite_ext(charIcon[pick_group_select[i, j]], pic_mode, 130,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
+                draw_sprite_ext(charIcon[pick_group_select[i, j]], pic_mode,130,pointer_y,1/(1+pic_scale*pic_mode),1/(1+pic_scale*pic_mode),0,image_blend,1);
+                if (string_length(charTitle[pick_group_select[i, j],curr_lang]) &gt;= 18) {
+                    draw_set_font(FnMainFontSmaller);
+                }
                 draw_text_ext_colour(250,pointer_y,charTitle[pick_group_select[i, j],curr_lang],60,2480,c_black,c_black,c_black,c_black,1);
+                draw_set_font(FnMainFont);
                 draw_text_ext_colour(620,pointer_y,charDesc[pick_group_select[i, j],curr_lang],50,1820,c_black,c_black,c_black,c_black,1);
                 pointer_x = 0;
                 for(k=0; k&lt;=charGroup.demon; k++)

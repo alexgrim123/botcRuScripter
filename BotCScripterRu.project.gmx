@@ -154,6 +154,10 @@
       <sprite>sprites\SprWidow</sprite>
       <sprite>sprites\SprPlagueDoctor</sprite>
       <sprite>sprites\SprOjo</sprite>
+      <sprite>sprites\SprKazali</sprite>
+      <sprite>sprites\SprVillageIdiot</sprite>
+      <sprite>sprites\SprHatter</sprite>
+      <sprite>sprites\SprYaggababble</sprite>
     </sprites>
     <sprites name="Fabled">
       <sprite>sprites\SprAngel</sprite>
@@ -215,9 +219,11 @@
     <script>scripts\scr_max_fabled.gml</script>
     <script>scripts\amy_sort.gml</script>
     <script>scripts\scr_make_array.gml</script>
+    <script>scripts\scr_pick_random_char.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\FnMainFont</font>
+    <font>fonts\FnMainFontSmaller</font>
     <font>fonts\FnSmallFont</font>
     <font>fonts\FnDescFont</font>
     <font>fonts\FnTitleFont</font>
