@@ -157,6 +157,9 @@
       <sprite>sprites\SprKazali</sprite>
       <sprite>sprites\SprVillageIdiot</sprite>
       <sprite>sprites\SprHatter</sprite>
+      <sprite>sprites\SprBanshee</sprite>
+      <sprite>sprites\SprOgre</sprite>
+      <sprite>sprites\SprSummoner</sprite>
       <sprite>sprites\SprYaggababble</sprite>
     </sprites>
     <sprites name="Fabled">

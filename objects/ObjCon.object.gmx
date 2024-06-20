@@ -251,6 +251,9 @@ enum charName {
     village_idiot,
     yaggababble,
     widow,
+    banshee,
+    ogre,
+    summoner,
     lastChar
 };
 
@@ -1643,9 +1646,9 @@ amy_order[charName.huntsman] = amyOrder.oncePerGame
 charCode[charName.king] = "king"
 charIcon[charName.king] = SprKing
 charTitle[charName.king,language.russian] = "Король"
-charDesc[charName.king,language.russian] = "Каждую ночь, если мёртвых больше, чем живых, вы узнаёте 1 персонажа живого игрока. Демон знает, кто вы."
+charDesc[charName.king,language.russian] = "Каждую ночь, если мёртвых столько же или больше, чем живых, вы узнаёте 1 персонажа живого игрока. Демон знает, кто вы."
 charTitle[charName.king,language.english] = "King";
-charDesc[charName.king,language.english] = "Each night, if the dead outnumber the living, you learn 1 alive character. The Demon knows who you are.";
+charDesc[charName.king,language.english] = "Each night, if the dead equal or outnumber the living, you learn 1 alive character. The Demon knows who you are.";
 charSet[charName.king] = setName.experimental;
 group[charName.king] = charGroup.townsfolk;
 f_night[charName.king] = 9;
@@ -2035,6 +2038,42 @@ group[charName.yaggababble] = charGroup.demon;
 f_night[charName.yaggababble] = 0;
 o_night[charName.yaggababble] = 32;
 amy_order[charName.yaggababble] = amyOrder.firstAndEveryNight;
+
+charCode[charName.banshee] = "banshee"
+charIcon[charName.banshee] = SprBanshee
+charTitle[charName.banshee,language.russian] = "Банши"
+charDesc[charName.banshee,language.russian] = "Если Демон убьёт вас, все игроки узнают об этом. С этого момента вы можете номинировать дважды в день и голосовать дважды за номинацию."
+charTitle[charName.banshee,language.english] = "Banshee";
+charDesc[charName.banshee,language.english] = "If the Demon kills you, all players learn this. From now on, you may nominate twice per day and vote twice per nomination.";
+charSet[charName.banshee] = setName.experimental;
+group[charName.banshee] = charGroup.townsfolk;
+f_night[charName.banshee] = 0;
+o_night[charName.banshee] = 32;
+amy_order[charName.banshee] = amyOrder.triggerOncePerGame;
+
+charCode[charName.summoner] = "summoner"
+charIcon[charName.summoner] = SprSummoner
+charTitle[charName.summoner,language.russian] = "Призыватель"
+charDesc[charName.summoner,language.russian] = "Вы получаете 3 блефа. В 3-ю ночь вы выбираете игрока: он становится Злым Демоном по вашему выбору. [Нет Демона]"
+charTitle[charName.summoner,language.english] = "Summoner";
+charDesc[charName.summoner,language.english] = "You get 3 bluffs. On the 3rd night, choose a player: they become an evil Demon of your choice. [No Demon]";
+charSet[charName.summoner] = setName.experimental;
+group[charName.summoner] = charGroup.minion;
+f_night[charName.summoner] = 0;
+o_night[charName.summoner] = 32;
+amy_order[charName.summoner] = amyOrder.triggerOncePerGame;
+
+charCode[charName.ogre] = "ogre"
+charIcon[charName.ogre] = SprOgre
+charTitle[charName.ogre,language.russian] = "Огр"
+charDesc[charName.ogre,language.russian] = "В первую ночь вы выбираете игрока (не себя): вы переходите на его сторону (но не знаете какую), даже если вы пьяны или отравлены."
+charTitle[charName.ogre,language.english] = "Ogre";
+charDesc[charName.ogre,language.english] = "On your 1st night, choose a player (not yourself): you become their alignment (you don't know which) even if drunk or poisoned.";
+charSet[charName.ogre] = setName.experimental;
+group[charName.ogre] = charGroup.outsider;
+f_night[charName.ogre] = 0;
+o_night[charName.ogre] = 32;
+amy_order[charName.ogre] = amyOrder.firstNight;
 </string>
           </argument>
         </arguments>
@@ -2385,6 +2424,7 @@ first_night_order_array = scr_make_array(
     charName.nightwatchman,
     charName.cultleader,
     charName.spy,
+    charName.ogre,
     charName.highPriestess,
     charName.general,
     charName.chambermaid,
@@ -2422,6 +2462,7 @@ other_night_order_array = scr_make_array(
     charName.harpy,
     charName.mezepheles,
     charName.scarletwoman,
+    charName.summoner,
     charName.lunatic,
     charName.exorcist,
     charName.lycanthrope,
@@ -2449,6 +2490,7 @@ other_night_order_array = scr_make_array(
     charName.barber,
     charName.sweetheart,
     charName.sage,
+    charName.banshee,
     charName.professor,
     charName.choirboy,
     charName.huntsman,
@@ -2487,8 +2529,8 @@ other_night_order_array_length = array_length_1d(other_night_order_array)
 
 f_night_demon_info = 14;
 f_night_minion_info = 11;
-f_night_dawn_order = 64;
-o_night_dawn_order = 84;
+f_night_dawn_order = 65;
+o_night_dawn_order = 86;
 
 for(i=0; i&lt;charName.lastChar; i++) {
     for(j=1;j&lt;first_night_order_array_length;j++) {
@@ -2562,7 +2604,7 @@ tag_filter_desc[1,language.russian] = "Всё, что меняет голосо�
 tag_filter_name[1,language.russian] = "Голосование";
 tag_filter_desc[1,language.english] = "Everything affecting voting, power of vote or triggers by votes";
 tag_filter_name[1,language.english] = "Voting";
-tag_filter_arr[1] = scr_make_array(charName.organgrinder,charName.legion,charName.cultleader,charName.flowergirl,charName.butler);
+tag_filter_arr[1] = scr_make_array(charName.banshee,charName.organgrinder,charName.legion,charName.cultleader,charName.flowergirl,charName.butler);
 
 tag_filter_desc[2,language.russian] = "Персонажи зависящие от расположения игроков в кругу";
 tag_filter_name[2,language.russian] = "Позиционирование";
@@ -2628,7 +2670,7 @@ tag_filter_desc[11,language.russian] = "Из-за этих персонажей 
 tag_filter_name[11,language.russian] = "Смена демона";
 tag_filter_desc[11,language.english] = "These characters make Demon swap players or make someone a new Demon";
 tag_filter_name[11,language.english] = "Demon swap";
-tag_filter_arr[11] = scr_make_array(charName.legion,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.imp,charName.scarletwoman);
+tag_filter_arr[11] = scr_make_array(charName.summoner, charName.legion,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.imp,charName.scarletwoman);
 
 tag_filter_desc[12,language.russian] = "Добавляют причину, по которой ночью мог умереть злодей (помимо блефа)";
 tag_filter_name[12,language.russian] = "Ночью умер злодей";
@@ -2670,7 +2712,7 @@ tag_filter_desc[18,language.russian] = "Срабатывают из-за сво�
 tag_filter_name[18,language.russian] = "Триггер на смерть";
 tag_filter_desc[18,language.english] = "Works by own death or other's death";
 tag_filter_name[18,language.english] = "Death Trigger";
-tag_filter_arr[18] = scr_make_array(charName.pixie,charName.hatter,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper,charName.plagueDoctor);
+tag_filter_arr[18] = scr_make_array(charName.banshee, charName.pixie,charName.hatter,charName.lleech,charName.leviathan,charName.king,charName.fearmonger,charName.farmer,charName.choirboy,charName.cannibal,charName.bountyhunter,charName.boomdandy,charName.vigormortis,charName.sweetheart,charName.sage,charName.klutz,charName.barber,charName.zombuul,charName.moonchild,charName.undertaker,charName.godfather,charName.minstrel,charName.grandmother,charName.ravenkeeper,charName.plagueDoctor);
 
 tag_filter_desc[19,language.russian] = "Эти персонажи делают так, что они или кто-то ещё узнают точного персонажа какого-то игрока (или одного из игроков)";
 tag_filter_name[19,language.russian] = "Узнаёт персонажа";
@@ -2700,19 +2742,19 @@ tag_filter_desc[23,language.russian] = "Способности срабатыв�
 tag_filter_name[23,language.russian] = "Работает днём";
 tag_filter_name[23,language.english] = "Day";
 tag_filter_desc[23,language.english] = "Abilities, that occur during the day (not connected to nominations and executions)";
-tag_filter_arr[23] = scr_make_array(charName.psychopath,charName.yaggababble,charName.fisherman,charName.amnesiac,charName.savant,charName.juggler,charName.artist, charName.slayer, charName.gossip);
+tag_filter_arr[23] = scr_make_array(charName.banshee,charName.psychopath,charName.yaggababble,charName.fisherman,charName.amnesiac,charName.savant,charName.juggler,charName.artist, charName.slayer, charName.gossip);
 
 tag_filter_desc[24,language.russian] = "Способности которые срабатывают только раз за игру (не считая те, которые срабатывают от смерти персонажа)";
 tag_filter_name[24,language.russian] = "Раз в игру";
 tag_filter_name[24,language.english] = "Once Per Game";
 tag_filter_desc[24,language.english] = "Abilities, that occur only once per game (death trigger abilities are not included)";
-tag_filter_arr[24] = scr_make_array(charName.puzzlemaster,charName.mezepheles,charName.huntsman,charName.golem,charName.fisherman,charName.engineer,charName.damsel,charName.seamstress,charName.philosopher,charName.juggler,charName.fanggu, charName.artist, charName.fool,charName.zombuul,charName.professor,charName.courtier,charName.assassin,charName.slayer, charName.virgin);
+tag_filter_arr[24] = scr_make_array(charName.summoner, charName.ogre, charName.puzzlemaster,charName.mezepheles,charName.huntsman,charName.golem,charName.fisherman,charName.engineer,charName.damsel,charName.seamstress,charName.philosopher,charName.juggler,charName.fanggu, charName.artist, charName.fool,charName.zombuul,charName.professor,charName.courtier,charName.assassin,charName.slayer, charName.virgin);
 
 tag_filter_desc[25,language.russian] = "Персонажи, которые объявляются публично (или слишком очевидные), а также персонажи, которые должны в открытую использовать свои способности";
 tag_filter_name[25,language.russian] = "Публично";
 tag_filter_name[25,language.english] = "Public";
 tag_filter_desc[25,language.english] = "Characters, that make public claims or automatically outted Evil";
-tag_filter_arr[25] = scr_make_array(charName.psychopath,charName.yaggababble,charName.vizier, charName.goblin,charName.damsel,charName.klutz,charName.juggler,charName.moonchild,charName.slayer,charName.gossip);
+tag_filter_arr[25] = scr_make_array(charName.banshee, charName.psychopath,charName.yaggababble,charName.vizier, charName.goblin,charName.damsel,charName.klutz,charName.juggler,charName.moonchild,charName.slayer,charName.gossip);
 
 tag_filter_desc[26,language.russian] = "Персонажи, способные заглянуть в гримуар ведущего";
 tag_filter_name[26,language.russian] = "Видит гримуар";
@@ -2724,7 +2766,7 @@ tag_filter_desc[27,language.russian] = "Всё, что меняет то, как
 tag_filter_name[27,language.russian] = "Номинации";
 tag_filter_name[27,language.english] = "Nominations";
 tag_filter_desc[27,language.english] = "Characters, that affect nominations, triggered by nominations or nominating.";
-tag_filter_arr[27] = scr_make_array(charName.vizier,charName.riot,charName.psychopath, charName.golem,charName.goblin,charName.fearmonger,charName.witch,charName.towncrier,charName.virgin);
+tag_filter_arr[27] = scr_make_array(charName.banshee, charName.vizier,charName.riot,charName.psychopath, charName.golem,charName.goblin,charName.fearmonger,charName.witch,charName.towncrier,charName.virgin);
 
 tag_filter_desc[28,language.russian] = "Персонажи, убивающие кого-то, но не способные выбрать жертву";
 tag_filter_name[28,language.russian] = "Убивает косвенно";
@@ -2766,7 +2808,7 @@ tag_filter_desc[34,language.russian] = "Способности, ведущие �
 tag_filter_name[34,language.russian] = "Смена сторон";
 tag_filter_desc[34,language.english] = "Abilities, that cause alignment change in any way";
 tag_filter_name[34,language.english] = "Alignment Change";
-tag_filter_arr[34] = scr_make_array(charName.politician,charName.kazali,charName.mezepheles,charName.legion,charName.cultleader,charName.bountyhunter,charName.snakecharmer,charName.fanggu,charName.goon);
+tag_filter_arr[34] = scr_make_array(charName.summoner, charName.ogre, charName.politician,charName.kazali,charName.mezepheles,charName.legion,charName.cultleader,charName.bountyhunter,charName.snakecharmer,charName.fanggu,charName.goon);
 
 tag_filter_desc[35,language.russian] = "Способности, требующие нестандартного подхода (иногда) со стороны игроков или рассказчика";
 tag_filter_name[35,language.russian] = "Креатив";
@@ -2778,7 +2820,7 @@ tag_filter_desc[36,language.russian] = "Способности, дающие о 
 tag_filter_name[36,language.russian] = "Знают что вы в игре";
 tag_filter_desc[36,language.english] = "Characters, that make themselves known to other players";
 tag_filter_name[36,language.english] = "Knows You";
-tag_filter_arr[36] = scr_make_array(charName.vizier,charName.organgrinder,charName.widow,charName.preacher,charName.nightwatchman,charName.marionette,charName.leviathan,charName.king,charName.fearmonger,charName.damsel,charName.alhadikhia,charName.eviltwin,charName.lunatic,charName.exorcist);
+tag_filter_arr[36] = scr_make_array(charName.banshee, charName.vizier,charName.organgrinder,charName.widow,charName.preacher,charName.nightwatchman,charName.marionette,charName.leviathan,charName.king,charName.fearmonger,charName.damsel,charName.alhadikhia,charName.eviltwin,charName.lunatic,charName.exorcist);
 
 tag_filter_desc[37,language.russian] = "Способности, которые могут возвращать из мёртвых";
 tag_filter_name[37,language.russian] = "Возрождение";
@@ -2790,7 +2832,7 @@ tag_filter_desc[38,language.russian] = "Всё, что может привест
 tag_filter_name[38,language.russian] = "Смена персонажей";
 tag_filter_desc[38,language.english] = "Abilities, that cause character change";
 tag_filter_name[38,language.english] = "Character Change";
-tag_filter_arr[38] = scr_make_array(charName.hatter,charName.kazali,charName.riot,charName.legion,charName.huntsman,charName.farmer,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.barber);
+tag_filter_arr[38] = scr_make_array(charName.summoner, charName.hatter,charName.kazali,charName.riot,charName.legion,charName.huntsman,charName.farmer,charName.engineer,charName.snakecharmer,charName.pithag,charName.fanggu,charName.barber);
 
 tag_filter_desc[39,language.russian] = "Затрагивает механику сумасшествия (вы спятили, что вы...)";
 tag_filter_name[39,language.russian] = "Сумасшествие";
@@ -2802,7 +2844,7 @@ tag_filter_desc[40,language.russian] = "Способности, зависящи
 tag_filter_name[40,language.russian] = "Мёртвые";
 tag_filter_desc[40,language.english] = "Abilities, affected by dead players, work after death or let you target specifically dead players";
 tag_filter_name[40,language.english] = "Dead";
-tag_filter_arr[40] = scr_make_array(charName.king,charName.heretic,charName.cannibal,charName.atheist,charName.vigormortis,charName.oracle,charName.undertaker,charName.recluse,charName.spy,charName.professor,charName.zombuul,charName.politician);
+tag_filter_arr[40] = scr_make_array(charName.banshee, charName.king,charName.heretic,charName.cannibal,charName.atheist,charName.vigormortis,charName.oracle,charName.undertaker,charName.recluse,charName.spy,charName.professor,charName.zombuul,charName.politician);
 
 tag_filter_desc[41,language.russian] = "Персонажи, получающие способности, дающие способности и забирающие способности. Также всё, что модифицирует способности";
 tag_filter_name[41,language.russian] = "Способности";
@@ -2814,7 +2856,7 @@ tag_filter_desc[43,language.russian] = "Персонажи, которые мо�
 tag_filter_name[43,language.russian] = "Меняет сетап";
 tag_filter_desc[43,language.english] = "Characters, that affect game setup (including outsider count and token distribution during setup)";
 tag_filter_name[43,language.english] = "Setup Change";
-tag_filter_arr[43] = scr_make_array(charName.kazali,charName.village_idiot,charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron,charName.marionette,charName.legion,charName.riot,charName.choirboy,charName.atheist,charName.bountyhunter,charName.lilmonsta);
+tag_filter_arr[43] = scr_make_array(charName.summoner, charName.kazali,charName.village_idiot,charName.huntsman,charName.balloonist,charName.vigormortis,charName.fanggu,charName.godfather,charName.baron,charName.marionette,charName.legion,charName.riot,charName.choirboy,charName.atheist,charName.bountyhunter,charName.lilmonsta);
 
 </string>
           </argument>
@@ -2838,24 +2880,52 @@ tag_filter_arr[43] = scr_make_array(charName.kazali,charName.village_idiot,charN
             <kind>1</kind>
             <string>/// Jynx
 
-scr_jynx(charName.fanggu,charName.scarletwoman,"Если Фэнг Гу умирает, выбрав Постороннего, Алая Дама не становится Фэнг Гу","If the Fang Gu chooses an outsider and dies, the Scarlet Woman does not become the Fang Gu")
-scr_jynx(charName.chambermaid,charName.mathematician,"Служанка узнаёт, проснулся ли Математик, хотя ходит раньше него","The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first")
+// Outsider jynx
 scr_jynx(charName.lunatic,charName.mathematician,"К информации Математика добавляется 1, если Лунатик и Демон выбрали разных игроков","Lunatic and Mathematician: The Mathematician learns if the Lunatic attacks a different player(s) than the real Demon attacks")
+scr_jynx(charName.cannibal,charName.butler,"Если Каннибал получает способность Дворецкого, он об этом узнаёт","If the Cannibal gains the Butler ability, the Cannibal learns this");
+scr_jynx(charName.ogre,charName.recluse,"Если Отшельник посчитался злым для Огра, Огр узнаёт что он Злой","If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil.");
+scr_jynx(charName.philosopher,charName.bountyhunter,"Если Философ получает способность Охотника за Головами, Горожанин может стать Злым","If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil.");
+
+scr_jynx(charName.cannibal,charName.juggler,"Если Жонглёр угадывал в свой первый день и умирает от казни, в эту ночь живой Каннибал узнает, сколько тот угадал","If the Juggler guesses on their first day and dies by execution, tonight the living Cannibal learns how many guesses the Juggler got correct.");
+scr_jynx(charName.chambermaid,charName.mathematician,"Служанка узнаёт, проснулся ли Математик, хотя ходит раньше него","The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first")
+scr_jynx(charName.fanggu,charName.scarletwoman,"Если Фэнг Гу умирает, выбрав Постороннего, Алая Дама не становится Фэнг Гу","If the Fang Gu chooses an outsider and dies, the Scarlet Woman does not become the Fang Gu")
 scr_jynx(charName.godfather,charName.heretic,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.widow,charName.heretic,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
+scr_jynx(charName.widow,charName.damsel,"Если Вдова есть (или была) в игре, Мадам отравлена.","If the Widow is (or has been) in play, the Damsel is poisoned.")
 scr_jynx(charName.spy,charName.heretic,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
-scr_jynx(charName.spy,charName.damsel,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
-scr_jynx(charName.widow,charName.damsel,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
+scr_jynx(charName.spy,charName.damsel,"Если Шпион есть (или был) в игре, Мадам отравлена.","If the Spy is (or has been) in play, the Damsel is poisoned.")
+scr_jynx(charName.spy,charName.ogre,"Шпион всегда считается Злым для Огра","The Spy registers as evil to the Ogre.");
+
+scr_jynx(charName.summoner,charName.alchemist,"Алхимик-Призыватель не убирает Демона на старте. Выбирая игрока Алхимик-Призыватель выбирает Демона, но не меняет сторону.","If there is an Alchemist-Summoner in play, the game starts with a Demon in play, as normal. If the Alchemist-Summoner chooses a player, they make that player a Demon but do not change their alignment.");
+scr_jynx(charName.summoner,charName.clockmaker,"Если Призыватель в игре, Часовщик не получает свою информацию, пока не будет создан Демон","If the Summoner is in play, the Clockmaker does not receive their information until a Demon is created.");
+scr_jynx(charName.summoner,charName.courtier,"Если Призыватель пьян на 3-ю ночь, он выбирает какого Демона создаёт, а Рассказчик выбирает игрока","If the Summoner is drunk on the 3rd night, the Summoner chooses which Demon, but the Storyteller chooses which player.");
+scr_jynx(charName.summoner,charName.engineer,"Если Инженер убирает Призывателя из игры, Призыватель сразу же использует свою способность","If the Engineer removes a Summoner from play before that Summoner uses their ability, the Summoner uses their ability immediately.");
+scr_jynx(charName.summoner,charName.hatter,"Призыватель не может создать Демона, который уже есть в игре. Если Призыватель создаёт Демона, которого нет в игре, смерти этой ночью выбирает ведущий","The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary.");
+scr_jynx(charName.summoner,charName.kazali,"Призыватель не может создать Демона, который уже есть в игре. Если Призыватель создаёт Демона, которого нет в игре, смерти этой ночью выбирает ведущий","The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary.");
+scr_jynx(charName.summoner,charName.legion,"Если Призыватель создаёт Легион, большинство игроков (включая всех Злых) становится Злым Легионом","If the Summoner creates Legion, most players (including all evil players) become evil Legion.");
+scr_jynx(charName.summoner,charName.marionette,"Марионетка сидит по соседству с Призывателем. Призыватель знает Марионетку","The Marionette neighbors the Summoner. The Summoner knows who the Marionette is.");
+scr_jynx(charName.summoner,charName.pithag,"Призыватель не может создать Демона, который уже есть в игре. Если Призыватель создаёт Демона, которого нет в игре, смерти этой ночью выбирает ведущий","The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary.");
+scr_jynx(charName.summoner,charName.poppygrower,"Если Маковод жив, когда Призыватель действует, Призыватель выбирает какого Демона создаёт, а Рассказчик выбирает игрока.","If the Poppy Grower is alive when the Summoner acts, the Summoner chooses which Demon, but the Storyteller chooses which player.");
+scr_jynx(charName.summoner,charName.pukka,"Призыватель может выбрать игрока для превращения в Пукку на вторую ночь","The Summoner may choose a player to become the Pukka on the 2nd night.");
+scr_jynx(charName.summoner,charName.riot,"Если Призыватель создаёт Бунт, все Приспешники становятся Бунтом","If the Summoner creates Riot, all Minions also become Riot.");
+scr_jynx(charName.summoner,charName.zombuul,"Если Призыватель превращает мёртвого игрока в Зомбуула, Рассказчик ведёт игру так, как-будто это Зомбуул который однажды умер.","If the Summoner turns a dead player into the Zombuul, the Storyteller treats that player as a Zombuul that has died once.");
+//scr_jynx(charName.summoner,charName.,"","");
+
 scr_jynx(charName.legion,charName.preacher,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.lilmonsta,charName.magician,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.riot,charName.exorcist,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.riot,charName.flowergirl,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.riot,charName.minstrel,"Эти персонажи не могут быть в одной игре","Only one jinxed character can be in play")
 scr_jynx(charName.alhadikhia,charName.mastermind,"Только 1 из персонажей может быть в игре, Злодеи в начале знают какой и у какого игрока","Only one jinxed character can be in play, Evil players start knowing which player and character it is")
+
 scr_jynx(charName.pithag,charName.damsel,"Если Колдунья создаёт мадам, рассказчик выбирает игрока сам","If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is")
 scr_jynx(charName.pithag,charName.heretic,"Колдунья не может создать Еретика","A Pit-Hag cannot create a Heretic")
-scr_jynx(charName.pithag,charName.politician,"Колдунья не может создать Злого Политика","A Pit-Hag cannot create an evil Politician")
+scr_jynx(charName.pithag,charName.politician,"Если Колдунья создала превратила Злого игрока в Политика, тот не может стать Добрым из-за своей способности","If the Pit-Hag turns an evil player into the Politician, they can't turn good due to their own ability.")
+scr_jynx(charName.pithag,charName.goon,"Если Колдунья создала превратила Злого игрока в Наёмника, тот не может стать Добрым из-за своей способности","If the Pit-Hag turns an evil player into the Goon, they can't turn good due to their own ability.")
+scr_jynx(charName.pithag,charName.cultleader,"Если Колдунья создала превратила Злого игрока в Лидера Культа, тот не может стать Добрым из-за своей способности","If the Pit-Hag turns an evil player into the Cult Leader, they can't turn good due to their own ability.")
 scr_jynx(charName.pithag,charName.riot,"Если Колдунья создаёт Бунт, все Злодеи становятся Бунтом. Если это произошло после 3 дня, игра длится ещё 1 день","If the Pit-Hag creates Riot, all evil players become Riot. If the Pit-Hag creates Riot after day 3, the game continues for one more day")
+scr_jynx(charName.pithag,charName.ogre,"Если Колдунья превращает Злого игрока в Огра, тот не сможет стать Добрым из-за своей способности","If the Pit-Hag turns an evil player into the Ogre, they can't turn good due to their own ability.")
+
 scr_jynx(charName.engineer,charName.legion,"Эти персонажи не могут быть в начале игры одновременно","Legion and the Engineer cannot both be in play at the start of the game. If the Engineer creates Legion, most players (including all evil players) become evil Legion")
 scr_jynx(charName.engineer,charName.riot,"Эти персонажи не могут быть в начале игры одновременно","Riot and the Engineer cannot both be in play at the start of the game. If the Engineer creates Riot, the evil players become Riot")
 scr_jynx(charName.village_idiot,charName.pithag,"Если остались жетоны, Колдунья может создавать Деревенских Дурачков. Сразу после этого может поменяться, кто из них пьян.","If there is a spare token, the Pit-Hag can create an extra Village Idiot. If so, the drunk Village Idiot might change.");
@@ -2867,7 +2937,6 @@ scr_jynx(charName.widow,charName.magician,"Когда Вдова смотрит 
 scr_jynx(charName.spy,charName.poppygrower,"Пока Маковод жив, Шпион не смотрит гримуар","If the Poppy Grower is in play, the Spy does not see the Grimoire until the Poppy Grower dies")
 scr_jynx(charName.widow,charName.poppygrower,"Пока Маковод жив, Вдова не смотрит гримуар","If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies")
 scr_jynx(charName.lycanthrope,charName.gambler,"Если Ликантроп жив и Картёжник умирает от своей способности, никто из игроков в эту ночь больше не умрёт","If the Lycanthrope is alive and the Gambler kills themselves at night, no other players can die tonight")
-scr_jynx(charName.cannibal,charName.butler,"Если Каннибал получает способность Дворецкого, он об этом узнаёт","If the Cannibal gains the Butler ability, the Cannibal learns this");
 
 scr_jynx(charName.marionette,charName.balloonist,"Если Марионетка думает, что он Аэронавт, +1 Посторонний","If the Marionette thinks that they are the Balloonist, +1 Outsider was added")
 scr_jynx(charName.marionette,charName.huntsman,"Если Марионетка думает, что он Охотник, +Мадам","If the Marionette thinks that they are the Huntsman, the Damsel was added")
@@ -2890,6 +2959,7 @@ scr_jynx(charName.leviathan,charName.ravenkeeper,"Если Левиафан в �
 scr_jynx(charName.leviathan,charName.sage,"Если Левиафан в игре и Мудрец умирает через казнь, ночью он использует свою способность","If Leviathan is in play and the Sage dies by execution, they wake that night to use their ability");
 scr_jynx(charName.leviathan,charName.mayor,"Если Левиафан в игре и на 5-ый день не происходит казни, Добро побеждает","If Leviathan is in play and no execution occurs on day 5, good wins");
 scr_jynx(charName.leviathan,charName.farmer,"Если Левиафан в игре и Фермер умирает через казнь, Добрый игрок станет Фермером этой ночью","If Leviathan is in play and a Farmer dies by execution, a good player becomes a Farmer that night");
+scr_jynx(charName.leviathan,charName.banshee,"Если Левиафан в игре и Банши умирает через казнь, все игроки об этом узнают и Банши получает свою способность","If Leviathan is in play, and the Banshee dies by execution, all players learn that the Banshee has died, and the Banshee gains their ability.");
 
 scr_jynx(charName.lleech,charName.slayer,"Если Убийца демонов выбирает для способности носителя Пиявки, носитель умирает","If the Slayer shoots the Lleech's host, the host dies");
 scr_jynx(charName.lleech,charName.heretic,"Если Пиявка отравляет Еретика, Еретик остаётся отравлен, а Пиявка умирает","If the Lleech has poisoned the Heretic then the Lleech dies, the Heretic remains poisoned");
@@ -2916,9 +2986,10 @@ scr_jynx(charName.riot,charName.saint,"Если Добрый игрок номи
 scr_jynx(charName.riot,charName.butler,"Дворецкий не может номинировать хозяина","The Butler cannot nominate their master")
 scr_jynx(charName.riot,charName.snitch,"Если Стукач в игре, каждый Бунт получает 3 дополнительных блефа","If the Snitch is in play, each Riot player gets an extra three bluffs")
 scr_jynx(charName.riot,charName.golem,"Если Голем номинирует Бунт, тот не умирает","If the Golem nominates Riot, the Riot player does not die")
+scr_jynx(charName.riot,charName.banshee,"Если Бунт номинирует и убивает Банши, об этом все узнают и Банши сразу же может номинировать двоих игроков","If Riot nominates and kills the Banshee, all players learn that the Banshee has died, and the Banshee may nominate two players immediately.")
 
 scr_jynx(charName.organgrinder,charName.butler,"Если голосование с закрытыми глазами, Дворецкий может голосовать, но засчитается это, только если его хозяин тоже проголосует","If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too");
-scr_jynx(charName.organgrinder,charName.flowergirl,"Если голосования проходили с закрытыми глазами, Цветочница узнаёт сколько раз Демон голосовал днём","If players' eyes were closed during the nominations, the Flowergirl learns how many times the Demon voted");
+scr_jynx(charName.organgrinder,charName.flowergirl,"Если Шарманщик сделал голосование в закрытую, Цветочница просыпается ночью и выбирает игрока: она узнаёт, голосовал ли этот игрок сегодня (вместо своей обычной способности)","If the Organ Grinder is causing eyes-closed voting, the Flowergirl wakes tonight to choose a player: they learn if that player voted today. (instead of their normal ability)");
 scr_jynx(charName.organgrinder,charName.minstrel,"Только 1 из персонажей может быть в игре, Злодеи в начале знают какой и у какого игрока","Only 1 jinxed character can be in play. Evil players start knowing which player and character it is");
 scr_jynx(charName.organgrinder,charName.preacher,"Только 1 из персонажей может быть в игре, Злодеи в начале знают какой и у какого игрока","Only 1 jinxed character can be in play. Evil players start knowing which player and character it is");
 scr_jynx(charName.organgrinder,charName.lilmonsta,"Голоса за Шарманщика засчитываются, если он нянчит Монстра Джуниора","Votes for the Organ Grinder count if the Organ Grinder is babysitting Lil' Monsta");
@@ -2927,9 +2998,10 @@ scr_jynx(charName.vizier,charName.investigator,"Если Следователь 
 scr_jynx(charName.vizier,charName.preacher,"Потеряв способность, Визирь узнаёт об этом. Если Визиря казнить, когда у него есть способность, его команда побеждает","If the Vizier loses their ability, they learn this and if the Vizier is executed while they have their ability, their team wins");
 scr_jynx(charName.vizier,charName.courtier,"Потеряв способность, Визирь узнаёт об этом. Если Визиря казнить, когда у него есть способность, его команда побеждает","If the Vizier loses their ability, they learn this and if the Vizier is executed while they have their ability, their team wins");
 scr_jynx(charName.vizier,charName.alchemist,"Если у Алхимика способность Визиря, он может заставить казнить только если хотя бы 3 игрока проголосовали","If the Alchemist has the Vizier ability, they may only choose to execute immediately if three or more players voted");
-scr_jynx(charName.vizier,charName.magician,"Только 1 из персонажей может быть в игре, Злодеи в начале знают какой и у какого игрока","Only 1 jinxed character can be in play. Evil players start knowing which player and character it is");
+scr_jynx(charName.vizier,charName.magician,"Если Визирь и Фокусник одновременно в игре, Демон не узнаёт Приспешников.","If the Vizier and Magician are both in play, the Demon does not learn the Minions.");
 scr_jynx(charName.vizier,charName.fearmonger,"Визирь просыпается со Страшилой и знает его выбор. Визирь не может казнить выбранного игрока","The Vizier wakes with the Fearmonger, learns who they choose and cannot choose to execute that player");
 scr_jynx(charName.vizier,charName.lilmonsta,"Визирь может умереть от казни, если он нянчит Монстра Джуниора","The Vizier can die by execution if they are babysitting Lil' Monsta");
+scr_jynx(charName.vizier,charName.politician,"Политик может посчитаться Злым для Визиря","The Politician might register as evil to the Vizier.");
 
 scr_jynx(charName.plagueDoctor,charName.baron,"Если Рассказчик получает способность Барона, до 2 игроков становятся Посторонними, которых нет в игре.","If the Storyteller gains the Baron ability, up to two players become out-of-play Outsiders.");
 scr_jynx(charName.plagueDoctor,charName.boomdandy,"Если Чумного доктора казнят и Рассказчик получает способность Подрывника, вместо этого способность сразу же срабатывает.","If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately.");
@@ -2951,6 +3023,8 @@ scr_jynx(charName.kazali,charName.goon,"Если Казали выбирает �
 scr_jynx(charName.kazali,charName.huntsman,"Если Казали выбирает Мадам в команду и в игре есть Охотник, Добрый игрок становится Мадам.","If the Kazali chooses the Damsel to become a Minion, and a Huntsman is in play, a good player becomes the Damsel.");
 scr_jynx(charName.kazali,charName.marionette,"Если Казали выбрал создать Марионетку, то он обязан выбрать соседнего игрока для неё.","If the Kazali chooses to create a Marionette, they must choose one of their neighbors.");
 scr_jynx(charName.yaggababble,charName.exorcist,"Если Экзорцист выбрал Ягу Болтунью, её способность никого не убивает этой ночью.","If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight.");
+
+scr_jynx(charName.banshee,charName.vortox,"Если в игре Вортокс и Демон убивает Банши, игроки всё ещё узнают что Банши умерла.","If the Vortox is in play and the Demon kills the Banshee, the players still learn that the Banshee has died.")
 </string>
           </argument>
         </arguments>
